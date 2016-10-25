@@ -1,34 +1,62 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { Link, IndexLink } from 'react-router';
 
 class Header extends Component {
-  renderNavItems() {
-    if (this.props.authenticated) {
-      return <li className='nav-item'>
-        <Link to='/signout' className='nav-link'>Sign out</Link>
-      </li>
-    } else  {
-      return [
-        <li className='nav-item' key={1}>
-          <Link to='/login' className='nav-link'>Login In</Link>
-        </li>,
-        <li className='nav-item' key={2}>
-          <Link to='/signup' className='nav-link'>Sign Up</Link>
-        </li>
-      ]
-    }
-  }
 
   render() {
+
+    const active = { borderBottomColor: '#3f51b5' };
+
+    const rightNavItems = this.props.authenticated ? (
+      <ul className='nav navbar-nav navbar-right'>
+        <li className='dropdown'>
+          <a>
+            USERNAME |PH|
+            <i className='caret' />
+          </a>
+          <ul className='dropdown-menu'>
+            <li><Link to='/account'>My Account</Link></li>
+            <li className='divider' />
+            <li><Link to='/signout'>Logout</Link></li>
+          </ul>
+        </li>
+      </ul>
+    ) : (
+      <ul className='nav navbar-nav navbar-right'>
+        <li><Link to='/login' activeStyle={ active }>Log in</Link></li>
+        <li><Link to='/signup' activeStyle={ active }>Sign up</Link></li>
+      </ul>
+    );
+
     return (
-      <nav className='navbar navbar-light'>
-        <Link to='/' className='navbar-brand'>Moonshot</Link>
-        <ul className='nav navbar-nav'>
-          { this.renderNavItems() }
-        </ul>
+      <nav className='navbar-default navbar-static-top'>
+
+        <div className='container-fluid'>
+          <div className='navbar-header'>
+            <button type="button" data-toggle="collapse" data-target="#navbar" className="navbar-toggle collapsed">
+              <span className="sr-only">Toggle navigation</span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+            </button>
+            <IndexLink to="/" className="navbar-brand">Moonshot</IndexLink>
+          </div>
+          <div id="navbar" className="navbar-collapse collapse">
+            <ul className="nav navbar-nav">
+              <li><IndexLink to="/" activeStyle={ active }>Home</IndexLink></li>
+              <li><Link to="/contact" activeStyle={ active }>Contact</Link></li>
+              <li><Link to="/pull" activeStyle={ active }>Pull</Link></li>
+              <li><Link to="/groups" activeStyle={ active }>Group</Link></li>
+              <li><Link to="/fund/" activeStyle={ active }>Fund</Link></li>
+            </ul>
+            { rightNavItems }
+          </div>
+        </div>
       </nav>
-    )
+
+
+    );
   }
 }
 
