@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 
+
 // mongoose.connect('mongodb://localhost:auth/auth');
 mongoose.connect('mongodb://localhost/moonshot');
 

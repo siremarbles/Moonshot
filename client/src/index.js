@@ -8,7 +8,7 @@ import reduxThunk from 'redux-thunk';
 import App from './components/app';
 import reducers from './reducers';
 import Home from './components/home';
-import Profile from './components/profile';
+import ProfileFeed from './components/profile_feed';
 import Login from './components/auth/login';
 import Signup from './components/auth/signup';
 import Signout from './components/auth/signout';
@@ -33,7 +33,7 @@ ReactDOM.render(
     <Router history={ browserHistory } >
       <Route path='/' component={ App }>
         <IndexRoute component={ Home } />
-        <Route path='profile' component={ RequireAuth(Profile) } />
+        <Route path='profile' component={ RequireAuth(ProfileFeed) } />
         <Route path='login' component={ Login } />
         <Route path='signup' component={ Signup } />
         <Route path='signout' component={ Signout } />

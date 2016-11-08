@@ -1,10 +1,25 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs');
+const autoIncrement = require('mongoose-auto-increment');
 
 const userSchema = new Schema({
   email: { type: String, unique: true, lowercase: true },
-  password: String
+  password: String,
+  dob: Date,
+  userId: { type: Number, deault: 0 },
+  ccNumber: Number,
+  ccExpiration: String,
+  ccCVV: Number,
+  firstName: String,
+  lastName: String,
+  verification: Number,
+  groups: { type: String, default: '' },
+  followingUsers: {},
+  followingGroups: {},
+  parentApproval: Boolean,
+  gender: String,
+
 });
 
 userSchema.pre('save', function(next) {

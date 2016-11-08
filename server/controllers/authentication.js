@@ -8,7 +8,10 @@ function tokenForUser(user) {
 }
 
 exports.login = function(req, res, next) {
-  res.send({ token: tokenForUser(req.user) });
+  res.send({
+    token: tokenForUser(req.user),
+    userId: req.user._id
+  });
 }
 
 exports.signup = function(req, res, next) {
@@ -28,13 +31,17 @@ exports.signup = function(req, res, next) {
 
     const user = new User({
       email: email,
-      password: password
+      password: password,
+      verification: 1,
     });
 
     user.save(function(err) {
       if (err) { return next(err); }
 
-      res.json({ token: tokenForUser(user) });
+      res.json({
+        token: tokenForUser(user),
+        userId: req.user._id
+      });
     });
   });
 

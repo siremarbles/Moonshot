@@ -22,7 +22,7 @@ class Login extends Component {
     const { handleSubmit, fields: { email, password }} = this.props;
 
     return (
-      <div>
+      <div className='container'>
         <h3>Login</h3>
         <form onSubmit={ handleSubmit(this.handleFormSubmit.bind(this)) }>
           <fieldset className='form-group'>
