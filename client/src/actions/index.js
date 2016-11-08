@@ -25,8 +25,9 @@ export function signupUser({ email, password }) {
 
 export function userV1Details({ firstName, lastName, dob }) {
   console.log('thats the call weve been waiting for.');
+  var id = localStorage.getItem('userId');
   return function(dispatch) {
-    axios.post(`${ROOT_URL}/profile/updateV1`, { firstName, lastName, dob })
+    axios.post(`${ROOT_URL}/profile/updateV1/${id}`, { firstName, lastName, dob })
       .then(response => {
         dispatch({ type: USER_UPDATE_V1 });
       })

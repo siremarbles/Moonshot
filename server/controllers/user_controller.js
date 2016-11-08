@@ -11,28 +11,17 @@ exports.getProfileData = function(req, res, next) {
     })
 }
 
-
 exports.updateV1Details = function(req, res, next) {
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
 
-  console.log('REQ = ', req);
-  User.findOne({ _id: req.params.id }, function(err, user) {
-
-    if (err) return next(err);
-    
-    if (user) {
-      user.save(function(err) {
-        if (err) { return next(err); }
-
-        res.json({
-          firstName: firstName,
-          lastName: lastName,
-          dob: dob,
-          verification: 2
-        })
-      });
-    }
-
+  User.findByIdAndUpdate(req.params.id, {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      dob: req.body.dob,
+      verification: 2,
+    }, {new: true}, function(err, user) {
+    if (err) throw err;
+    // console.log("the update user is now = ", user);
   })
 }

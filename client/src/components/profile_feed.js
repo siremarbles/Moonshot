@@ -11,18 +11,9 @@ class ProfileFeed extends Component {
   }
 
   handleFormSubmit() {
-    // console.log('dop');
-    // console.log('first name = ', this.props.values.firstName);
-    // console.log('last name = ', this.props.values.lastName);
-    // console.log('dob = ', this.props.values.dob);
-
-
-    // console.log('first name = ', firstName);
-    // console.log('last name = ', lastName);
-    // console.log('dob = ', dob);
-
     const { firstName, lastName, dob } = this.props.values;
-    this.props.userV1Details({ firstName, lastName, dob })
+    this.props.userV1Details({ firstName, lastName, dob });
+    this.props.fetchProfileData();
   }
 
   renderAlert() {
@@ -35,58 +26,28 @@ class ProfileFeed extends Component {
     }
   }
 
-  noFirstName() {
-    const { fields: { firstName }} = this.props;
-    if (!this.props.user.firstName) {
-      return (
-        <fieldset className='form-group'>
-          <label>First Name:</label>
-          <input className='form-control' { ...firstName } />
-          { firstName.touched && firstName.error && <div className='error'>{ firstName.error }</div> }
-        </fieldset>
-      );
-    }
-  }
-
-  noLastName() {
-    const { fields: { lastName }} = this.props;
-    if (!this.props.user.lastName) {
-      return (
-        <fieldset className='form-group'>
-          <label>Last Name:</label>
-          <input className='form-control' { ...lastName }/>
-          { lastName.touched && lastName.error && <div className='error'>{ lastName.error }</div> }
-        </fieldset>
-      );
-    }
-  }
-
-  noDob() {
-    const { fields: {  dob }} = this.props;
-    if (!this.props.user.dob) {
-      return (
-        <fieldset className='form-group'>
-          <label>Date of Birth:</label>
-          <input className='form-control' { ...dob }/>
-          { dob.touched && dob.error && <div className='error'>{ dob.error }</div> }
-        </fieldset>
-      );
-    }
-  }
-
-  renderWarnings() {
+  verificationOne() {
+    const { handleSubmit, fields: { firstName, lastName, dob }} = this.props;
     if (!this.props.user) {
-      return ( <div>LOADING</div> );
-    }
-
-    if (this.props.user.verification != 3) {
-      const { handleSubmit } = this.props;
-      return(
+      return(<div>Loading</div>);
+    } else if (!this.props.user.firstName) {
+      return (
         <form onSubmit={ handleSubmit(this.handleFormSubmit.bind(this)) }>
-          { this.noFirstName() }
-          { this.noLastName() }
-          { this.noDob() }
-          { this.renderAlert() }
+          <fieldset className='form-group'>
+            <label>First Name:</label>
+            <input className='form-control' { ...firstName } />
+            { firstName.touched && firstName.error && <div className='error'>{ firstName.error }</div> }
+          </fieldset>
+          <fieldset className='form-group'>
+            <label>Last Name:</label>
+            <input className='form-control' { ...lastName }/>
+            { lastName.touched && lastName.error && <div className='error'>{ lastName.error }</div> }
+          </fieldset>
+          <fieldset className='form-group'>
+            <label>Date of Birth:</label>
+            <input className='form-control' { ...dob }/>
+            { dob.touched && dob.error && <div className='error'>{ dob.error }</div> }
+          </fieldset>
           <button action='submit' className='btn btn-primary'>Save</button>
         </form>
       );
@@ -96,7 +57,7 @@ class ProfileFeed extends Component {
   renderName() {
     if (!this.props.user) {
       return
-    } else if (this.props.user.verification != 3) {
+    } else if (this.props.user.verification == 1) {
       return (
         <div>
           <h4>Welcome to your profile</h4>
@@ -116,7 +77,7 @@ class ProfileFeed extends Component {
     return (
       <div className='container'>
         { this.renderName() }
-        { this.renderWarnings() }
+        { this.verificationOne() }
       </div>
     );
   }
@@ -137,7 +98,6 @@ function validate(formProps) {
 }
 
 function mapStateToProps(state) {
-  // console.log('state = ', state);
   return {
     message: state.auth.message,
     errorMessage: state.auth.error,

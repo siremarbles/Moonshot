@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt-nodejs');
 const userSchema = new Schema({
   email: { type: String, unique: true, lowercase: true },
   password: String,
-  dob: String,
+  proDescription: String,
   userId: { type: Number, deault: 0 },
   ccNumber: Number,
   ccExpiration: String,
@@ -18,6 +18,8 @@ const userSchema = new Schema({
   followingGroups: {},
   parentApproval: Boolean,
   gender: String,
+  dob: String,
+  dateJoined: Date,
 
 });
 
