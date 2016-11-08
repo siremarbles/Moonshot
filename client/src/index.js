@@ -33,7 +33,7 @@ ReactDOM.render(
     <Router history={ browserHistory } >
       <Route path='/' component={ App }>
         <IndexRoute component={ Home } />
-        <Route path='profile' component={ RequireAuth(ProfileFeed) } />
+        <Route path='my-profile' component={ RequireAuth(ProfileFeed) } />
         <Route path='login' component={ Login } />
         <Route path='signup' component={ Signup } />
         <Route path='signout' component={ Signout } />

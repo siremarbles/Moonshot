@@ -17,7 +17,18 @@ export function signupUser({ email, password }) {
         dispatch({ type: AUTH_USER });
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('userId', response.data.userId);
-        browserHistory.push('/profile');
+        browserHistory.push('/my-profile');
+      })
+      .catch(error => dispatch(authError(error.response.data.error)));
+  }
+}
+
+export function userV1Details({ firstName, lastName, dob }) {
+  console.log('thats the call weve been waiting for.');
+  return function(dispatch) {
+    axios.post(`${ROOT_URL}/profile/updateV1`, { firstName, lastName, dob })
+      .then(response => {
+        dispatch({ type: USER_UPDATE_V1 });
       })
       .catch(error => dispatch(authError(error.response.data.error)));
   }
@@ -27,11 +38,10 @@ export function loginUser({ email, password }) {
   return function(dispatch) {
     axios.post(`${ROOT_URL}/login`, { email, password })
       .then(response => {
-        // console.log('response data inside loginUser = ', response);
         dispatch({ type: AUTH_USER });
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('userId', response.data.userId);
-        browserHistory.push('/profile');
+        browserHistory.push('/my-profile');
       })
       .catch(() => {
         dispatch(authError('Bad Login Info'));
@@ -41,10 +51,9 @@ export function loginUser({ email, password }) {
 
 export function signoutUser() {
   localStorage.removeItem('token');
-  localStorage.removeItem('uId');
+  localStorage.removeItem('userId');
   return { type: DEAUTH_USER };
 }
-
 
 export function authError(error) {
   return {
@@ -65,6 +74,7 @@ export function fetchMessage() {
           payload: response.data.message
         })
       })
+      .catch(() => { dispatch(authError('Could not Fetch Message'));});
   }
 }
 
@@ -81,5 +91,6 @@ export function fetchProfileData() {
           payload: response.data
         })
       })
+      .catch(() => { dispatch(authError('Could not Fetch Profile Data'));});
   }
 }

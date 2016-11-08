@@ -3,7 +3,8 @@ import {
   DEAUTH_USER,
   AUTH_ERROR,
   FETCH_MESSAGE,
-  FETCH_PROFILE_DATA
+  FETCH_PROFILE_DATA,
+  USER_UPDATE_V1
 } from '../actions/types';
 
 export default function(state = {}, action) {
@@ -17,7 +18,9 @@ export default function(state = {}, action) {
     case FETCH_MESSAGE:
       return { ...state, message: action.payload };
     case FETCH_PROFILE_DATA:
-      return {...state, user: action.payload };
+      return { ...state, user: action.payload };
+    case USER_UPDATE_V1:
+      return { ...state, user: action.payload };
   }
   return state;
 }

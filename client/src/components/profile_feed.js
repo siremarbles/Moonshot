@@ -11,11 +11,18 @@ class ProfileFeed extends Component {
   }
 
   handleFormSubmit() {
-    console.log('dop');
-    console.log('first name = ', this.props.values.firstName);
-    console.log('last name = ', this.props.values.lastName);
-    console.log('dob = ', this.props.values.dob);
+    // console.log('dop');
+    // console.log('first name = ', this.props.values.firstName);
+    // console.log('last name = ', this.props.values.lastName);
+    // console.log('dob = ', this.props.values.dob);
 
+
+    // console.log('first name = ', firstName);
+    // console.log('last name = ', lastName);
+    // console.log('dob = ', dob);
+
+    const { firstName, lastName, dob } = this.props.values;
+    this.props.userV1Details({ firstName, lastName, dob })
   }
 
   renderAlert() {
@@ -29,7 +36,7 @@ class ProfileFeed extends Component {
   }
 
   noFirstName() {
-    const { handleSubmit, fields: { firstName, lastName, dob }} = this.props;
+    const { fields: { firstName }} = this.props;
     if (!this.props.user.firstName) {
       return (
         <fieldset className='form-group'>
@@ -42,7 +49,7 @@ class ProfileFeed extends Component {
   }
 
   noLastName() {
-    const { handleSubmit, fields: { firstName, lastName, dob }} = this.props;
+    const { fields: { lastName }} = this.props;
     if (!this.props.user.lastName) {
       return (
         <fieldset className='form-group'>
@@ -55,7 +62,7 @@ class ProfileFeed extends Component {
   }
 
   noDob() {
-    const { handleSubmit, fields: { firstName, lastName, dob }} = this.props;
+    const { fields: {  dob }} = this.props;
     if (!this.props.user.dob) {
       return (
         <fieldset className='form-group'>
@@ -73,28 +80,42 @@ class ProfileFeed extends Component {
     }
 
     if (this.props.user.verification != 3) {
-      const { handleSubmit, fields: { firstName, lastName, dob }} = this.props;
+      const { handleSubmit } = this.props;
       return(
         <form onSubmit={ handleSubmit(this.handleFormSubmit.bind(this)) }>
-        {/* // <form onSubmit={this.handleFormSubmit} > */}
-        { this.noFirstName() }
-        { this.noLastName() }
-        { this.noDob() }
-        { this.renderAlert() }
-        <button action='submit' className='btn btn-primary'>Save</button>
+          { this.noFirstName() }
+          { this.noLastName() }
+          { this.noDob() }
+          { this.renderAlert() }
+          <button action='submit' className='btn btn-primary'>Save</button>
         </form>
       );
     }
+  }
 
-
+  renderName() {
+    if (!this.props.user) {
+      return
+    } else if (this.props.user.verification != 3) {
+      return (
+        <div>
+          <h4>Welcome to your profile</h4>
+          <p>We need a little more information about yourself before you get started.</p>
+        </div>
+      );
+    } else if (this.props.user.firstName && this.props.user.lastName) {
+      return (
+        <h3>Welcome { this.props.user.firstName } {this.props.user.lastName}</h3>
+      );
+    }
   }
 
   render() {
-    console.log("props inside render ", this.props);
+    // console.log("props inside render ", this.props);
     const { handleSubmit, fields: { firstName, lastName, dob }} = this.props;
     return (
       <div className='container'>
-        <h2>Profile</h2>
+        { this.renderName() }
         { this.renderWarnings() }
       </div>
     );
@@ -103,15 +124,12 @@ class ProfileFeed extends Component {
 
 function validate(formProps) {
   const errors = {};
-
   if (!formProps.firstName) {
     errors.firstName = 'Please enter your first name.'
   }
-
   if (!formProps.lastName) {
     errors.lastName = 'Please enter your last name.'
   }
-
   if (!formProps.dob) {
     errors.dob = 'Please enter your date of birth.'
   }
@@ -119,15 +137,13 @@ function validate(formProps) {
 }
 
 function mapStateToProps(state) {
-  console.log('state = ', state);
+  // console.log('state = ', state);
   return {
     message: state.auth.message,
     errorMessage: state.auth.error,
     user: state.auth.user
   };
 }
-
-// export default connect(mapStateToProps, actions)(ProfileFeed);
 
 export default reduxForm({
   form: 'userDetails',

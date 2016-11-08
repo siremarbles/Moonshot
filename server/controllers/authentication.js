@@ -40,7 +40,7 @@ exports.signup = function(req, res, next) {
 
       res.json({
         token: tokenForUser(user),
-        userId: req.user._id
+        userId: user._id
       });
     });
   });
