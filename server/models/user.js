@@ -7,6 +7,7 @@ const userSchema = new Schema({
   password: String,
   proDescription: String,
   userId: { type: Number, deault: 0 },
+  userType: String,
   ccNumber: Number,
   ccExpiration: String,
   ccCVV: Number,
@@ -20,7 +21,7 @@ const userSchema = new Schema({
   gender: String,
   dob: String,
   dateJoined: Date,
-
+  phoneNumber: String
 });
 
 userSchema.pre('save', function(next) {

@@ -17,17 +17,17 @@ export function signupUser({ email, password }) {
         dispatch({ type: AUTH_USER });
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('userId', response.data.userId);
-        browserHistory.push('/my-profile');
+        browserHistory.push('/profile-feed');
       })
       .catch(error => dispatch(authError(error.response.data.error)));
   }
 }
 
-export function userV1Details({ firstName, lastName, dob }) {
+export function userV1Details({ firstName, lastName, dob, userType }) {
   console.log('thats the call weve been waiting for.');
   var id = localStorage.getItem('userId');
   return function(dispatch) {
-    axios.post(`${ROOT_URL}/profile/updateV1/${id}`, { firstName, lastName, dob })
+    axios.post(`${ROOT_URL}/profile/updateV1/${id}`, { firstName, lastName, dob, userType })
       .then(response => {
         dispatch({ type: USER_UPDATE_V1 });
       })
@@ -42,7 +42,7 @@ export function loginUser({ email, password }) {
         dispatch({ type: AUTH_USER });
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('userId', response.data.userId);
-        browserHistory.push('/my-profile');
+        browserHistory.push('/profile-feed');
       })
       .catch(() => {
         dispatch(authError('Bad Login Info'));

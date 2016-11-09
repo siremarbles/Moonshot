@@ -4,16 +4,39 @@ import { Link, IndexLink } from 'react-router';
 
 class Header extends Component {
 
+  renderRightItems() {
+    if (this.props.authenticated) {
+      return (
+        <ul className='nav navbar-nav navbar-right'>
+          <li role='presentation' className='dropdown'>
+            <a href='#' className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false' aria-haspopup='true'>
+              USERNAME |PH|
+            </a>
+            <ul className='dropdown-menu'>
+              <li><Link to='/account'>My Account</Link></li>
+              <li className='divider' />
+              <li><Link to='/signout'>Logout</Link></li>
+            </ul>
+          </li>
+        </ul>
+      );
+    } else {
+      <ul className='nav navbar-nav navbar-right'>
+        <li><Link to='/login' activeStyle={ active }>Log in</Link></li>
+        <li><Link to='/signup' activeStyle={ active }>Sign up</Link></li>
+      </ul>
+    }
+  }
+
   render() {
 
     const active = { borderBottomColor: '#3f51b5' };
 
     const rightNavItems = this.props.authenticated ? (
       <ul className='nav navbar-nav navbar-right'>
-        <li className='dropdown'>
-          <a>
+        <li role='presentation' className='dropdown'>
+          <a href='#' className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false' aria-haspopup='true'>
             USERNAME |PH|
-            <i className='caret' />
           </a>
           <ul className='dropdown-menu'>
             <li><Link to='/account'>My Account</Link></li>
@@ -50,6 +73,7 @@ class Header extends Component {
               <li><Link to="/groups" activeStyle={ active }>Group</Link></li>
               <li><Link to="/fund/" activeStyle={ active }>Fund</Link></li>
             </ul>
+            {/* { this.renderRightItems() } */}
             { rightNavItems }
           </div>
         </div>

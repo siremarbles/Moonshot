@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form';
 import * as actions from '../actions';
+import { connect } from 'react-redux';
+import UserVerification from './profile/user_verification';
+import UserFeed from './profile/user_feed';
 
 class ProfileFeed extends Component {
   componentWillMount() {
-    const { handleSubmit, fields: { firstName, lastName, dob }} = this.props;
     this.props.fetchMessage();
-    this.props.fetchProfileData();
-  }
-
-  handleFormSubmit() {
-    const { firstName, lastName, dob } = this.props.values;
-    this.props.userV1Details({ firstName, lastName, dob });
     this.props.fetchProfileData();
   }
 
@@ -26,37 +20,9 @@ class ProfileFeed extends Component {
     }
   }
 
-  verificationOne() {
-    const { handleSubmit, fields: { firstName, lastName, dob }} = this.props;
-    if (!this.props.user) {
-      return(<div>Loading</div>);
-    } else if (!this.props.user.firstName) {
-      return (
-        <form onSubmit={ handleSubmit(this.handleFormSubmit.bind(this)) }>
-          <fieldset className='form-group'>
-            <label>First Name:</label>
-            <input className='form-control' { ...firstName } />
-            { firstName.touched && firstName.error && <div className='error'>{ firstName.error }</div> }
-          </fieldset>
-          <fieldset className='form-group'>
-            <label>Last Name:</label>
-            <input className='form-control' { ...lastName }/>
-            { lastName.touched && lastName.error && <div className='error'>{ lastName.error }</div> }
-          </fieldset>
-          <fieldset className='form-group'>
-            <label>Date of Birth:</label>
-            <input className='form-control' { ...dob }/>
-            { dob.touched && dob.error && <div className='error'>{ dob.error }</div> }
-          </fieldset>
-          <button action='submit' className='btn btn-primary'>Save</button>
-        </form>
-      );
-    }
-  }
-
   renderName() {
     if (!this.props.user) {
-      return
+      return (<div>Loading</div>);
     } else if (this.props.user.verification == 1) {
       return (
         <div>
@@ -72,29 +38,14 @@ class ProfileFeed extends Component {
   }
 
   render() {
-    // console.log("props inside render ", this.props);
-    const { handleSubmit, fields: { firstName, lastName, dob }} = this.props;
     return (
       <div className='container'>
         { this.renderName() }
-        { this.verificationOne() }
+        <UserVerification />
+        <UserFeed />
       </div>
     );
   }
-}
-
-function validate(formProps) {
-  const errors = {};
-  if (!formProps.firstName) {
-    errors.firstName = 'Please enter your first name.'
-  }
-  if (!formProps.lastName) {
-    errors.lastName = 'Please enter your last name.'
-  }
-  if (!formProps.dob) {
-    errors.dob = 'Please enter your date of birth.'
-  }
-  return errors;
 }
 
 function mapStateToProps(state) {
@@ -105,8 +56,17 @@ function mapStateToProps(state) {
   };
 }
 
-export default reduxForm({
-  form: 'userDetails',
-  fields: ['firstName', 'lastName', 'dob'],
-  validate: validate
-}, mapStateToProps, actions)(ProfileFeed);
+export default connect(mapStateToProps, actions)(ProfileFeed);
+
+
+/*
+    This page is only accessible by the user that is logged in
+    no other user will have access to this page
+    this is where the user can change user info payment methods ect
+
+
+    <UserFeed />
+      needs to be used multiple times for each piece of activity feed thats going on
+      we will use the .map function to populate it and probably need a sperate function
+      outside of the render method to make this work properly
+*/

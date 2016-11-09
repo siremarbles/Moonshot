@@ -6,7 +6,7 @@ class Home extends Component {
     return (
       <div>
         <h2>This is the Home page</h2>
-        <Link to='/profile' className='btn btn-primary'>Go to Profile</Link>
+        <Link to='/profile-feed' className='btn btn-primary'>Go to Profile</Link>
         <Link to='/login' className='btn btn-primary'>Go to Login</Link>
 
         <div className='container-fluid'>
