@@ -36,3 +36,12 @@ exports.updateCreditCard = function(req, res, next) {
     console.log("~~~~~~~THE UPDATED USER IS NOT ======= ", user);
   })
 }
+
+
+/*
+
+DO WE NEED TO TELL/WARN/PROHIBIT
+USERS FROM ADDING THE SAME CREDIT CARD
+ON MULTIPLE ACCOUNTS?
+
+*/

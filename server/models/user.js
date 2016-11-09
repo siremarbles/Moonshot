@@ -11,6 +11,7 @@ const userSchema = new Schema({
   ccNumber: Number,
   ccExpiration: String,
   ccCVV: Number,
+  ccName: String,
   firstName: String,
   lastName: String,
   verification: Number,

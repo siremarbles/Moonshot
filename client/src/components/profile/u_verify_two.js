@@ -43,6 +43,7 @@ class UserVerifyTwo extends Component {
             <option value="regular">Regular</option>
             <option value="mentor">Mentor</option>
             <option value="investor">Investor</option>
+            <option value="adult">Adult</option>
           </select>
           <br /><br />
           <button action='submit' className='btn btn-primary'>Submit</button>
@@ -90,4 +91,7 @@ export default reduxForm({
         if they do have those fields ... when they verify their email ... the server should change their verificatin to 2 which means they need to add payment info
 
         -http://redux-form.com/6.0.0-alpha.6/examples/wizard/
+
+
+        for the drop down for userType we need to change adult to something like "authorizor" ...
 */
