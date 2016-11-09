@@ -10,6 +10,7 @@ class ProfileFeed extends Component {
   componentWillMount() {
     this.props.fetchMessage();
     this.props.fetchProfileData();
+    // this.forceUpdate();
   }
 
   renderAlert() {

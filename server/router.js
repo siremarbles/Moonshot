@@ -18,5 +18,8 @@ module.exports = function(app) {
 //POST
   app.post('/login', requireSignin, Authentication.login);
   app.post('/signup', Authentication.signup);
-  app.post('/profile/updateV1/:id', userController.updateV1Details);
+  app.post('/profile/updateV1/:id', requireAuth, userController.updateV1Details);
+
+  app.post('/user/ccinfo/:id', requireAuth, userController.updateCreditCard);
+
 }

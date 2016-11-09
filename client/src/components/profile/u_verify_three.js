@@ -3,13 +3,10 @@ import { reduxForm } from 'redux-form';
 import * as actions from '../../actions';
 
 class UserVerifyThree extends Component {
-  // componentWillMount() {
-  //   this.props.fetchMessage();
-  //   this.props.fetchProfileData();
-  // }
 
-  handleFormSubmit() {
-    console.log('credit card submitted');
+  handleFormSubmit(formProps) {
+    this.props.userCCDetails(formProps);
+    // this.props.fetchProfileData();
   }
 
   render() {
@@ -80,7 +77,7 @@ function mapStateToProps(state) {
 }
 
 export default reduxForm({
-  form: 'userCCDetails',
+  form: 'userCCInfo',
   fields: ['ccName', 'ccN', 'ccE', 'ccV'],
   validate: validate
 }, mapStateToProps, actions)(UserVerifyThree);
