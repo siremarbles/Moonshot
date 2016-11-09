@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
-import UserVerification from './profile/user_verification';
+import UserVerifyOne from './profile/u_verify_one';
+import UserVerifyTwo from './profile/u_verify_two';
+import UserVerifyThree from './profile/u_verify_three';
 import UserFeed from './profile/user_feed';
 
 class ProfileFeed extends Component {
@@ -22,7 +24,7 @@ class ProfileFeed extends Component {
 
   renderName() {
     if (!this.props.user) {
-      return (<div>Loading</div>);
+      return (<div>Loading.x.x.</div>);
     } else if (this.props.user.verification == 1) {
       return (
         <div>
@@ -41,7 +43,9 @@ class ProfileFeed extends Component {
     return (
       <div className='container'>
         { this.renderName() }
-        <UserVerification />
+        <UserVerifyOne />
+        <UserVerifyTwo />
+        <UserVerifyThree />
         <UserFeed />
       </div>
     );
