@@ -1,6 +1,6 @@
 var User = require('../models/user');
 
-exports.getProfileData = function(req, res, next) {
+exports.getUserData = function(req, res, next) {
     User.findOne({ _id: req.params.id }, function(err, user) {
       if (err) return next(err);
       if (user) {
@@ -42,21 +42,5 @@ exports.updateCreditCard = function(req, res, next) {
     if (user) {
       res.send(user);
     }
-
-    console.log("~~~~~~~THE UPDATED USER IS NOT ======= ", user);
   })
-
-
-
-
-
 }
-
-
-/*
-
-DO WE NEED TO TELL/WARN/PROHIBIT
-USERS FROM ADDING THE SAME CREDIT CARD
-ON MULTIPLE ACCOUNTS?
-
-*/

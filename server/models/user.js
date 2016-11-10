@@ -22,7 +22,8 @@ const userSchema = new Schema({
   gender: String,
   dob: String,
   dateJoined: Date,
-  phoneNumber: String
+  phoneNumber: String,
+  public: Boolean
 });
 
 userSchema.pre('save', function(next) {

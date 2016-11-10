@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import * as actions from '../actions';
+import * as actions from '../../actions';
 import { connect } from 'react-redux';
-import UserVerifyOne from './profile/u_verify_one';
-import UserVerifyTwo from './profile/u_verify_two';
-import UserVerifyThree from './profile/u_verify_three';
-import UserFeed from './profile/user_feed';
+import { Link } from 'react-router';
+import UserVerifyOne from './u_verify_one';
+import UserVerifyTwo from './u_verify_two';
+import UserVerifyThree from './u_verify_three';
+import UserFeed from './user_feed';
 
 class ProfileFeed extends Component {
   componentWillMount() {
@@ -32,6 +33,15 @@ onChange(state) {
     }
   }
 
+  renderButtons() {
+    return(
+      <div className='container'>
+
+        <Link to='/create-group' className='btn btn-primary'>Create Group</Link>
+      </div>
+    );
+  }
+
   renderName() {
     if (!this.props.user) {
       return (<div>Loading.x.x.</div>);
@@ -57,6 +67,7 @@ onChange(state) {
         <UserVerifyTwo />
         <UserVerifyThree />
         <UserFeed />
+        { this.renderButtons() }
       </div>
     );
   }

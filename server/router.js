@@ -13,7 +13,7 @@ module.exports = function(app) {
   app.get('/', requireAuth, function(req, res) {
             res.send({ message: 'you needed a jwt ... you used it ... you have access'});
           });
-  app.get('/profile/:id', requireAuth, userController.getProfileData);
+  app.get('/profile/:id', requireAuth, userController.getUserData);
 
 //POST
   app.post('/login', requireSignin, Authentication.login);
