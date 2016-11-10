@@ -4,7 +4,7 @@ import * as actions from '../../actions';
 
 class UserVerifyTwo extends Component {
 
-  handleFormSubmit() {
+  handleFormSubmit(formProps) {
     if (this.props.values.userType == undefined) {
       const userType = 'regular';
       const { firstName, lastName, dob } = this.props.values;
@@ -13,11 +13,11 @@ class UserVerifyTwo extends Component {
       const { firstName, lastName, dob, userType } = this.props.values;
       this.props.userV1Details({ firstName, lastName, dob, userType });
     }
-    this.props.fetchProfileData();
   }
 
   render() {
     const { handleSubmit, fields: { firstName, lastName, dob, userType }} = this.props;
+
     if (!this.props.user) {
       return (<div>Loading.o.o.</div>);
     } else if (this.props.user.verification <= 1) {
@@ -89,8 +89,6 @@ export default reduxForm({
       at the same time we need to display v2 so they can start filling that out
       when the user verifies their email we need to check to see if they have a first and last name as well as a dob filled out
         if they do have those fields ... when they verify their email ... the server should change their verificatin to 2 which means they need to add payment info
-
-        -http://redux-form.com/6.0.0-alpha.6/examples/wizard/
 
 
         for the drop down for userType we need to change adult to something like "authorizor" ...

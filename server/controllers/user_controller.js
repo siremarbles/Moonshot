@@ -20,6 +20,9 @@ exports.updateV1Details = function(req, res, next) {
       verification: 2,
     }, {new: true}, function(err, user) {
     if (err) throw err;
+    if (user) {
+      res.send(user);
+    }
     // console.log("the update user is now = ", user);
   })
 }
@@ -27,13 +30,6 @@ exports.updateV1Details = function(req, res, next) {
 exports.updateCreditCard = function(req, res, next) {
   console.log("~~~~~~~~~~~~~~~~~~~~~~", req);
   const ccN = req.body.ccN;
-
-  // User.findOne({ ccNumber: ccN }, function(err, existingCcN) {
-  //   if (err) { return next(err); }
-  //   if (existingCcN) {
-  //     return res.status(422).send({ error: 'This Credit Card is already tied to another account.'});
-  //   }
-  // })
 
   User.findByIdAndUpdate(req.params.id, {
     ccNumber: ccN,
@@ -43,8 +39,15 @@ exports.updateCreditCard = function(req, res, next) {
     verification: 3
   }, {new: true}, function(err, user) {
     if (err) throw err;
+    if (user) {
+      res.send(user);
+    }
+
     console.log("~~~~~~~THE UPDATED USER IS NOT ======= ", user);
   })
+
+
+
 
 
 }

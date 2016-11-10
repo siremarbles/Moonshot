@@ -6,7 +6,6 @@ class UserVerifyThree extends Component {
 
   handleFormSubmit(formProps) {
     this.props.userCCDetails(formProps);
-    // this.props.fetchProfileData();
   }
 
   render() {

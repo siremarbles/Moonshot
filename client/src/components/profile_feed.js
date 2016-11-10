@@ -10,7 +10,16 @@ class ProfileFeed extends Component {
   componentWillMount() {
     this.props.fetchMessage();
     this.props.fetchProfileData();
-    // this.forceUpdate();
+  }
+
+  constructor(props) {
+    super(props);
+    this.onChange = this.onChange.bind(this);
+  }
+
+onChange(state) {
+    this.setState(state);
+    this.forceUpdate();
   }
 
   renderAlert() {
@@ -26,14 +35,14 @@ class ProfileFeed extends Component {
   renderName() {
     if (!this.props.user) {
       return (<div>Loading.x.x.</div>);
-    } else if (this.props.user.verification == 1) {
+    } else if (this.props.user.verification <= 1) {
       return (
         <div>
           <h4>Welcome to your profile</h4>
           <p>We need a little more information about yourself before you get started.</p>
         </div>
       );
-    } else if (this.props.user.firstName && this.props.user.lastName) {
+    } else {
       return (
         <h3>Welcome { this.props.user.firstName } {this.props.user.lastName}</h3>
       );
