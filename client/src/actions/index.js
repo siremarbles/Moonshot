@@ -124,11 +124,11 @@ export function createGroup({ groupName }) {
     axios.post(`${ROOT_URL}/create-group`, { groupName }, config)
       .then(response => {
         dispatch({
-          type: ADD_TO_GROUP,
+          type: CREATE_GROUP,
           payload: response.data
         })
       })
-      .catch(() => { dispatch(authError('Could not create a group'));});
+      .catch(error => { dispatch(authError(error.response.data.error));});
   }
 
 }

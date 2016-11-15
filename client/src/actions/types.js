@@ -7,4 +7,4 @@ export const FETCH_PROFILE_DATA = 'fetch_profile_data';
 export const USER_UPDATE_V1 = 'user_update_v1';
 export const USER_UPDATE_CC = 'user_update_cc';
 
-export const ADD_TO_GROUP = 'add_to_group';
+export const CREATE_GROUP = 'create_group';

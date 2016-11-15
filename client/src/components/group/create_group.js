@@ -9,6 +9,16 @@ class CreateGroup extends Component {
     this.props.createGroup({ groupName });
   }
 
+  renderAlert() {
+    if (this.props.errorMessage) {
+      return (
+        <div className='alert alert-danger'>
+          <strong>Oops!</strong> { this.props.errorMessage }
+        </div>
+      );
+    }
+  }
+
   render() {
     const { handleSubmit, fields: { gName }} = this.props;
 
@@ -21,7 +31,9 @@ class CreateGroup extends Component {
             <fieldset className='form-group'>
             <label>Group Name:</label>
             <input className='form-control' { ...gName } />
+            { gName.touch && gName.error && <div className='error'>{ gName.error }</div> }
             </fieldset>
+            { this.renderAlert() }
             <button action='submit' className='btn btn-primary'>Create Group!</button>
           </form>
         </div>
@@ -32,7 +44,9 @@ class CreateGroup extends Component {
 
 function validate(formProps) {
   const errors = {};
-
+  if (!formProps.gName) {
+    errors.gName = 'Enter a Group Name.'
+  }
   return errors;
 }
 

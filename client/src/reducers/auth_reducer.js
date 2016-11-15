@@ -6,7 +6,7 @@ import {
   FETCH_PROFILE_DATA,
   USER_UPDATE_V1,
   USER_UPDATE_CC,
-  ADD_TO_GROUP
+  CREATE_GROUP
 } from '../actions/types';
 
 export default function(state = {}, action) {
@@ -25,7 +25,7 @@ export default function(state = {}, action) {
       return { ...state, user: action.payload };
     case USER_UPDATE_CC:
       return { ...state, user: action.payload };
-    case ADD_TO_GROUP:
+    case CREATE_GROUP:
       return { ...state, user: action.payload };
   }
   return state;

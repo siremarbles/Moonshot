@@ -17,18 +17,10 @@ const userSchema = new Schema({
   firstName: String,
   lastName: String,
   verification: Number,
-  // groups: {
-  //   group : {
-  //     groupName: String,
-  //     groupId: String
-  //   }
-  // },
-  groups: [
-    {
-      groupName: String,
-      groupId: String
-    }
-  ],
+  groups: [{
+    groupName: String,
+    groupId: String
+  }],
   followingUsers: {},
   followingGroups: {},
   parentApproval: Boolean,
