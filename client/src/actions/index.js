@@ -7,7 +7,8 @@ import {
   FETCH_MESSAGE,
   FETCH_PROFILE_DATA,
   USER_UPDATE_V1,
-  USER_UPDATE_CC
+  USER_UPDATE_CC,
+  ADD_TO_GROUP
 } from './types'
 
 const ROOT_URL = 'http://localhost:3090';
@@ -112,4 +113,22 @@ export function fetchProfileData() {
       })
       .catch(() => { dispatch(authError('Could not Fetch Profile Data'));});
   }
+}
+
+export function createGroup({ groupName }) {
+  console.log('groupName = ', groupName);
+  const config = {
+    headers: { authorization: localStorage.getItem('token') }
+  };
+  return function(dispatch) {
+    axios.post(`${ROOT_URL}/create-group`, { groupName }, config)
+      .then(response => {
+        dispatch({
+          type: ADD_TO_GROUP,
+          payload: response.data
+        })
+      })
+      .catch(() => { dispatch(authError('Could not create a group'));});
+  }
+
 }

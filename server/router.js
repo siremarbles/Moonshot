@@ -7,6 +7,7 @@ const requireSignin = passport.authenticate('local', { session: false });
 
 
 var userController = require('./controllers/user_controller');
+var groupController = require('./controllers/group_controller');
 
 module.exports = function(app) {
 //GET
@@ -19,7 +20,10 @@ module.exports = function(app) {
   app.post('/login', requireSignin, Authentication.login);
   app.post('/signup', Authentication.signup);
   app.post('/profile/updateV1/:id', requireAuth, userController.updateV1Details);
-
   app.post('/user/ccinfo/:id', requireAuth, userController.updateCreditCard);
+
+  app.post('/create-group', requireAuth, groupController.createGroup);
+
+
 
 }

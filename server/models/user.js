@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs');
 
+var Group = require('./group');
+
 const userSchema = new Schema({
   email: { type: String, unique: true, lowercase: true },
   password: String,
@@ -15,7 +17,18 @@ const userSchema = new Schema({
   firstName: String,
   lastName: String,
   verification: Number,
-  groups: { type: String, default: '' },
+  // groups: {
+  //   group : {
+  //     groupName: String,
+  //     groupId: String
+  //   }
+  // },
+  groups: [
+    {
+      groupName: String,
+      groupId: String
+    }
+  ],
   followingUsers: {},
   followingGroups: {},
   parentApproval: Boolean,
@@ -44,7 +57,6 @@ userSchema.pre('save', function(next) {
 userSchema.methods.comparePassword = function(candidatePassword, callback) {
   bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
     if (err) { return callback(err); }
-
     callback(null, isMatch);
   });
 }

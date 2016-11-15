@@ -18,7 +18,7 @@ exports.updateV1Details = function(req, res, next) {
       dob: req.body.dob,
       userType: req.body.userType,
       verification: 2,
-    }, {new: true}, function(err, user) {
+    }, { new: true }, function(err, user) {
     if (err) throw err;
     if (user) {
       res.send(user);
@@ -28,7 +28,7 @@ exports.updateV1Details = function(req, res, next) {
 }
 
 exports.updateCreditCard = function(req, res, next) {
-  console.log("~~~~~~~~~~~~~~~~~~~~~~", req);
+  // console.log("~~~~~~~~~~~~~~~~~~~~~~", req);
   const ccN = req.body.ccN;
 
   User.findByIdAndUpdate(req.params.id, {
@@ -37,7 +37,7 @@ exports.updateCreditCard = function(req, res, next) {
     ccCVV: req.body.ccV,
     ccName: req.body.ccName,
     verification: 3
-  }, {new: true}, function(err, user) {
+  }, { new: true }, function(err, user) {
     if (err) throw err;
     if (user) {
       res.send(user);
