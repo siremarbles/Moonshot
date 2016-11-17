@@ -52,7 +52,7 @@ function validate(formProps) {
 function mapStateToProps(state) {
   return {
     errorMessage: state.auth.error,
-    user: state.auth.user
+    user: state.user.user
   }
 }
 

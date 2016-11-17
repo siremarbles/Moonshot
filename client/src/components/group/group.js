@@ -36,7 +36,7 @@ class Group extends Component {
 function mapStateToProps(state) {
   return {
     errorMessage: state.auth.error,
-    group: state.auth.group
+    group: state.group.group
   }
 }
 

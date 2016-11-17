@@ -101,7 +101,7 @@ function mapStateToProps(state) {
   return {
     message: state.auth.message,
     errorMessage: state.auth.error,
-    user: state.auth.user
+    user: state.user.user
   };
 }
 

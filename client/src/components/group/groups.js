@@ -6,6 +6,7 @@ import { browserHistory } from 'react-router';
 class Groups extends Component {
 
   componentDidMount() {
+    console.log('componentDidMount');
     this.props.fetchAllGroups();
   }
 
@@ -38,9 +39,10 @@ class Groups extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log('state = ', state);
   return {
     errorMessage: state.auth.error,
-    groups: state.auth.groups
+    groups: state.group.groups
   }
 }
 

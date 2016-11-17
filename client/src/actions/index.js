@@ -146,10 +146,12 @@ export function fetchGroupData(groupName) {
 }
 
 export function fetchAllGroups() {
+  console.log('fetchAllGroups');
   const config = { headers: { authorization: localStorage.getItem('token') } };
   return function(dispatch) {
     axios.get(`${ROOT_URL}/groups`, config)
       .then(response => {
+        console.log('response = ', response);
         dispatch({
           type: FETCH_ALL_GROUPS,
           payload: response.data
