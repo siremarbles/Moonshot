@@ -8,3 +8,10 @@ const rootReducer = combineReducers({
 });
 
 export default rootReducer;
+
+
+/*
+  Break up all reducers into multiple reducers so everything is not under auth
+
+
+*/

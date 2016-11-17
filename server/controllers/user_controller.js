@@ -23,12 +23,10 @@ exports.updateV1Details = function(req, res, next) {
     if (user) {
       res.send(user);
     }
-    // console.log("the update user is now = ", user);
   })
 }
 
 exports.updateCreditCard = function(req, res, next) {
-  // console.log("~~~~~~~~~~~~~~~~~~~~~~", req);
   const ccN = req.body.ccN;
 
   User.findByIdAndUpdate(req.params.id, {

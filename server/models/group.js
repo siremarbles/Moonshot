@@ -9,9 +9,11 @@ const groupSchema = new Schema({
   }],
   admins: { admins: { name: String, userId: String, datePromoted: Date } },
   maxMembers: Number,
-  funds_max: Number,
+  max_funds: Number,
   funds_remaining: Number,
-  dateCreated: Date
+  dateCreated: Date,
+  max_members: { type: Number, default: 12 },
+  active: { type: Boolean, default: false }
 });
 
 const GroupClass = mongoose.model('group', groupSchema);

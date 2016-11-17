@@ -14,8 +14,11 @@ import Signup from './components/auth/signup';
 import Signout from './components/auth/signout';
 import About from './components/about';
 import Contact from './components/contact';
+
+//Groups
 import Groups from './components/group/groups';
 import CreateGroup from './components/group/create_group';
+import Group from './components/group/group';
 
 import RequireAuth from './components/auth/require_auth';
 import { AUTH_USER } from './actions/types';
@@ -42,6 +45,7 @@ ReactDOM.render(
         <Route path='about' component={ About } />
         <Route path='contact' component={ Contact } />
         <Route path='groups' component={ Groups } />
+        <Route path='group/:id' component={ Group } />
         <Route path='create-group' component={ CreateGroup } />
       </Route>
     </Router>

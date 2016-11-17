@@ -2,6 +2,11 @@
   color: red;
 }
 
+.groupListItem {
+  width: 140px;
+  text-align: center;
+}
+
 
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)

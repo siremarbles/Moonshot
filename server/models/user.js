@@ -17,10 +17,7 @@ const userSchema = new Schema({
   firstName: String,
   lastName: String,
   verification: Number,
-  groups: [{
-    groupName: String,
-    groupId: String
-  }],
+  groups: [{ groupName: String, groupId: String }],
   followingUsers: {},
   followingGroups: {},
   parentApproval: Boolean,
@@ -28,7 +25,8 @@ const userSchema = new Schema({
   dob: String,
   dateJoined: Date,
   phoneNumber: String,
-  public: Boolean
+  public: Boolean,
+  friends: [{ friendName: String, friendId: String }]
 });
 
 userSchema.pre('save', function(next) {

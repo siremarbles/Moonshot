@@ -21,7 +21,6 @@ class CreateGroup extends Component {
 
   render() {
     const { handleSubmit, fields: { gName }} = this.props;
-
     return (
       <div>
         <h3>Create A New Group Page</h3>

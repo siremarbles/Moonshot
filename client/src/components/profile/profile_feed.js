@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { browserHistory } from 'react-router';
+
 import UserVerifyOne from './u_verify_one';
 import UserVerifyTwo from './u_verify_two';
 import UserVerifyThree from './u_verify_three';
@@ -59,6 +61,27 @@ onChange(state) {
     }
   }
 
+  renderGroups() {
+    if (!this.props.user) {
+      return <div>load</div>;
+    } else if (this.props.user.groups.length != 0) {
+      return (
+        <div className='container'>
+          <h3>My Groups</h3>
+          <ul>
+            { this.props.user.groups.map((group, i) => (
+              <li className='groupListItem' groupListItemkey={i} type='button' onClick={ this.groupClicked.bind(this, group.groupName) }>{ group.groupName }</li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
+  }
+
+  groupClicked(name) {
+    browserHistory.push('/group/' + name);
+  }
+
   render() {
     return (
       <div className='container'>
@@ -67,6 +90,7 @@ onChange(state) {
         <UserVerifyTwo />
         <UserVerifyThree />
         <UserFeed />
+        { this.renderGroups() }
         { this.renderButtons() }
       </div>
     );
