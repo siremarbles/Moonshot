@@ -12,7 +12,7 @@ import UserFeed from './user_feed';
 class ProfileFeed extends Component {
   componentWillMount() {
     this.props.fetchMessage();
-    this.props.fetchProfileData();
+    this.props.fetchUserFeedData();
   }
 
   constructor(props) {

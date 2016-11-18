@@ -8,6 +8,10 @@ class Group extends Component {
     this.props.fetchGroupData(this.props.params.id);
   }
 
+  joinGroup() {
+    this.props.joinGroup();
+  }
+
   renderMembers() {
     if (!this.props.group) {
       return null;

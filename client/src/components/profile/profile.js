@@ -6,10 +6,12 @@ import { connect } from 'react-redux';
 class UserProfile extends Component {
 
   componentDidMount() {
-
+    console.log(this.props.params.id);
+    this.props.fetchProfileData(this.props.params.id);
   }
 
   render() {
+    console.log('this.props', this.props);
     return(
       <div>A user's Profile</div>
     );
@@ -19,7 +21,7 @@ class UserProfile extends Component {
 function mapStateToProps(state) {
   return {
     errorMessage: state.auth.error,
-    // viewUser: state.user.user
+    viewUser: state.profile.profileUser
   }
 }
 

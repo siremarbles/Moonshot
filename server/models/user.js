@@ -26,7 +26,8 @@ const userSchema = new Schema({
   dateJoined: Date,
   phoneNumber: String,
   public: Boolean,
-  friends: [{ friendName: String, friendId: String }]
+  friends: [{ friendName: String, friendId: String }],
+  profilePublic: { type: Boolean, default: true }
 });
 
 userSchema.pre('save', function(next) {

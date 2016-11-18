@@ -15,7 +15,6 @@ class Groups extends Component {
   }
 
   userClicked(name) {
-    // console.log('user clicked');
     browserHistory.push('/profile/' + name);
   }
 
@@ -37,7 +36,6 @@ class Groups extends Component {
   }
 
   renderUsers() {
-    console.log('this.props', this.props);
     if (!this.props.users) {
       return null;
     } else {
@@ -66,7 +64,7 @@ class Groups extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('state = ', state);
+  // console.log('state = ', state);
   return {
     errorMessage: state.auth.error,
     groups: state.group.groups,

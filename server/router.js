@@ -15,19 +15,23 @@ module.exports = function(app) {
             res.send({ message: 'you needed a jwt ... you used it ... you have access'});
           });
   app.get('/profile/:id', requireAuth, userController.getUserData);
+  app.get('/all-users', requireAuth, userController.fetchAllUsers);
+
+  app.get('/profile-data', requireAuth, userController.getProfileData);
+
   app.get('/group/:id', requireAuth, groupController.getGroupData);
   app.get('/groups', requireAuth, groupController.getGroups);
 
-  app.get('/all-users', requireAuth, userController.fetchAllUsers);
+
 
 //POST
   app.post('/login', requireSignin, Authentication.login);
   app.post('/signup', Authentication.signup);
   app.post('/profile/updateV1/:id', requireAuth, userController.updateV1Details);
   app.post('/user/ccinfo/:id', requireAuth, userController.updateCreditCard);
-
   app.post('/create-group', requireAuth, groupController.createGroup);
 
-
+//PUT
+  app.put('/update-user-privacy', requireAuth, userController.changeProfilePrivacy);
 
 }

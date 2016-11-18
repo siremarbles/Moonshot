@@ -50,3 +50,24 @@ exports.fetchAllUsers = function(req, res, next) {
     }
   })
 }
+
+exports.getProfileData = function(req, res, next) {
+  console.log('req.body', req.headers.profileid);
+  User.findOne({ _id: req.headers.profileid }, {email: 1, firstName:1, lastName:1, groups:1, dob:1, friends:1, profilePublic:1}, function(err, user) {
+    if (err) { return next(err); }
+    if (user) {
+      res.send(user);
+    }
+  })
+}
+
+exports.changeProfilePrivacy = function(req, res, next) {
+    User.findOne({ _id: req.body.profileId }, function(err, user) {
+      if (err) { return next(err); }
+      if (req.body.privacy === "true") {
+        console.log('user privacy should now be set to private');
+      } else if (req.body.privacy === "false") {
+        console.log('user privacy should now be set to public');
+      }
+    })
+}

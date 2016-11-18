@@ -5,13 +5,14 @@ import {
   DEAUTH_USER,
   AUTH_ERROR,
   FETCH_MESSAGE,
-  FETCH_PROFILE_DATA,
+  FETCH_USER_FEED_DATA,
   USER_UPDATE_V1,
   USER_UPDATE_CC,
   CREATE_GROUP,
   FETCH_GROUP_DATA,
   FETCH_ALL_GROUPS,
-  FETCH_ALL_USERS
+  FETCH_ALL_USERS,
+  FETCH_PROFILE_DATA
 } from './types'
 
 const ROOT_URL = 'http://localhost:3090';
@@ -96,14 +97,14 @@ export function userCCDetails({ ccName, ccN, ccE, ccV }) {
   }
 }
 
-export function fetchProfileData() {
+export function fetchUserFeedData() {
   const id = localStorage.getItem('userId');
   const config = { headers: { authorization: localStorage.getItem('token') } };
   return function(dispatch) {
     axios.get(`${ROOT_URL}/profile/${id}`, config)
       .then(response => {
         dispatch({
-          type: FETCH_PROFILE_DATA,
+          type: FETCH_USER_FEED_DATA,
           payload: response.data
         })
       })
@@ -122,6 +123,28 @@ export function fetchAllUsers() {
         })
       })
       .catch(() => { dispatch(authError('Could not Fetch all the Users')); });
+  }
+}
+
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          PROFILE
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+export function fetchProfileData(profileId) {
+  console.log('in fPD id = ', profileId);
+  const config = { headers: { authorization: localStorage.getItem('token'), profileId: profileId } };
+  return function(dispatch) {
+    axios.get(`${ROOT_URL}/profile-data`, config)
+      .then(response => {
+        console.log('response = ', response);
+        dispatch({
+          type: FETCH_PROFILE_DATA,
+          payload: response.data
+        })
+      })
+      .catch(() => { dispatch(authError('Could not fetch this users profile data')); });
   }
 }
 
@@ -170,6 +193,10 @@ export function fetchAllGroups() {
         })
       })
   }
+}
+
+export function joinGroup() {
+  console.log('hey we need to set up joinGroup()');
 }
 
 /*

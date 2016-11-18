@@ -49,7 +49,6 @@ exports.addUserToGroup = function(req, res, next) {
   });
 }
 
-
 exports.getGroupData = function(req, res, next) {
   Group.findOne({ name: req.params.id }, function(err, group) {
     if (err) { return next(err); }
