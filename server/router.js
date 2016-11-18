@@ -16,13 +16,9 @@ module.exports = function(app) {
           });
   app.get('/profile/:id', requireAuth, userController.getUserData);
   app.get('/all-users', requireAuth, userController.fetchAllUsers);
-
   app.get('/profile-data', requireAuth, userController.getProfileData);
-
   app.get('/group/:id', requireAuth, groupController.getGroupData);
   app.get('/groups', requireAuth, groupController.getGroups);
-
-
 
 //POST
   app.post('/login', requireSignin, Authentication.login);

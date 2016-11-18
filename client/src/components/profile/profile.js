@@ -6,14 +6,26 @@ import { connect } from 'react-redux';
 class UserProfile extends Component {
 
   componentDidMount() {
-    console.log(this.props.params.id);
     this.props.fetchProfileData(this.props.params.id);
   }
 
+  renderName() {
+    if (!this.props.viewUser) {
+      return (<div>Loading</div>);
+    } else {
+      return (
+        <div className='container'>
+          <h3>{ this.props.viewUser.firstName } Profile Page</h3>
+        </div>
+      );
+    }
+  }
+
   render() {
-    console.log('this.props', this.props);
     return(
-      <div>A user's Profile</div>
+      <div>
+        { this.renderName() }
+      </div>
     );
   }
 }
@@ -25,5 +37,4 @@ function mapStateToProps(state) {
   }
 }
 
-// export default UserProfile;
 export default connect(mapStateToProps, actions)(UserProfile);
