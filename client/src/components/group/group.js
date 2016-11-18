@@ -40,5 +40,4 @@ function mapStateToProps(state) {
   }
 }
 
-// export default Group;
 export default connect(mapStateToProps, actions)(Group);

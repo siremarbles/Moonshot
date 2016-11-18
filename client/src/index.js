@@ -15,6 +15,8 @@ import Signout from './components/auth/signout';
 import About from './components/about';
 import Contact from './components/contact';
 
+import Profile from './components/profile/profile';
+
 //Groups
 import Groups from './components/group/groups';
 import CreateGroup from './components/group/create_group';
@@ -39,6 +41,7 @@ ReactDOM.render(
       <Route path='/' component={ App }>
         <IndexRoute component={ Home } />
         <Route path='profile-feed' component={ RequireAuth(ProfileFeed) } />
+        <Route path='profile/:id' component={ Profile } />
         <Route path='login' component={ Login } />
         <Route path='signup' component={ Signup } />
         <Route path='signout' component={ Signout } />

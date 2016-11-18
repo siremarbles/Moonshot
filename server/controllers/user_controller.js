@@ -28,7 +28,6 @@ exports.updateV1Details = function(req, res, next) {
 
 exports.updateCreditCard = function(req, res, next) {
   const ccN = req.body.ccN;
-
   User.findByIdAndUpdate(req.params.id, {
     ccNumber: ccN,
     ccExpiration: req.body.ccE,
@@ -39,6 +38,15 @@ exports.updateCreditCard = function(req, res, next) {
     if (err) throw err;
     if (user) {
       res.send(user);
+    }
+  })
+}
+
+exports.fetchAllUsers = function(req, res, next) {
+  User.find({}, {email: 1, firstName: 1}, function(err, users) {
+    if (err) { return next(err); }
+    if (users) {
+      res.send(users);
     }
   })
 }

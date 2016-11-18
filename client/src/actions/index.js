@@ -10,7 +10,8 @@ import {
   USER_UPDATE_CC,
   CREATE_GROUP,
   FETCH_GROUP_DATA,
-  FETCH_ALL_GROUPS
+  FETCH_ALL_GROUPS,
+  FETCH_ALL_USERS
 } from './types'
 
 const ROOT_URL = 'http://localhost:3090';
@@ -110,6 +111,20 @@ export function fetchProfileData() {
   }
 }
 
+export function fetchAllUsers() {
+  const config = { headers: { authorization: localStorage.getItem('token') } };
+  return function(dispatch) {
+    axios.get(`${ROOT_URL}/all-users`, config)
+      .then(response => {
+        dispatch({
+          type: FETCH_ALL_USERS,
+          payload: response.data
+        })
+      })
+      .catch(() => { dispatch(authError('Could not Fetch all the Users')); });
+  }
+}
+
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
           GROUP
@@ -121,13 +136,12 @@ export function createGroup({ groupName }) {
   return function(dispatch) {
     axios.post(`${ROOT_URL}/create-group`, { groupName }, config)
       .then(response => {
-        console.log('response = ', response);
         dispatch({
           type: CREATE_GROUP,
           payload: response.data
         })
       })
-      .catch(error => { console.log('err = ', error); dispatch(authError(error.response.data.error)); });
+      .catch(error => { dispatch(authError(error.response.data.error)); });
   }
 }
 
@@ -146,12 +160,10 @@ export function fetchGroupData(groupName) {
 }
 
 export function fetchAllGroups() {
-  console.log('fetchAllGroups');
   const config = { headers: { authorization: localStorage.getItem('token') } };
   return function(dispatch) {
     axios.get(`${ROOT_URL}/groups`, config)
       .then(response => {
-        console.log('response = ', response);
         dispatch({
           type: FETCH_ALL_GROUPS,
           payload: response.data

@@ -15,9 +15,10 @@ module.exports = function(app) {
             res.send({ message: 'you needed a jwt ... you used it ... you have access'});
           });
   app.get('/profile/:id', requireAuth, userController.getUserData);
-
   app.get('/group/:id', requireAuth, groupController.getGroupData);
   app.get('/groups', requireAuth, groupController.getGroups);
+
+  app.get('/all-users', requireAuth, userController.fetchAllUsers);
 
 //POST
   app.post('/login', requireSignin, Authentication.login);

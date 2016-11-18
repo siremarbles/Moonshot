@@ -60,7 +60,6 @@ exports.getGroupData = function(req, res, next) {
 }
 
 exports.getGroups = function(req, res, next) {
-
   Group.find({}, 'name', function(err, groups) {
     if (err) { return next(err); }
     if (groups) {
