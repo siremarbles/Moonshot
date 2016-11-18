@@ -18,8 +18,8 @@ class Home extends Component {
                  <p>  Moonshot helps you lift your projects off the ground.
                  Turn your dreams into our reality. Believe in yourself.</p>
                </div>
-               <div className="col-md-5 col-lg-5 col-sm-5 col-xs-5 pull-right"  >
-                 <img src="img/astrogirl_iso_small.png" className="pull-right" alt="Moonshot" width="300px" />
+               <div className="col-md-5 col-lg-5 col-sm-5 col-xs-5 pull-right">
+
                 </div>
              </div>
             </div>

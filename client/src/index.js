@@ -7,15 +7,14 @@ import reduxThunk from 'redux-thunk';
 
 import App from './components/app';
 import reducers from './reducers';
-import Home from './components/home';
-import ProfileFeed from './components/profile/profile_feed';
-import Login from './components/auth/login';
-import Signup from './components/auth/signup';
-import Signout from './components/auth/signout';
-import About from './components/about';
-import Contact from './components/contact';
-
-import Profile from './components/profile/profile';
+import HomePage from './components/home_page';
+import ProfileFeedPage from './components/profile/profile_feed_page';
+import LoginPage from './components/auth/login_page';
+import SignupPage from './components/auth/signup_page';
+import SignoutPage from './components/auth/signout_page';
+import AboutPage from './components/about_page';
+import ContactPage from './components/contact_page';
+import ProfilePage from './components/profile/profile_page';
 
 //Groups
 import Groups from './components/group/groups';
@@ -39,14 +38,14 @@ ReactDOM.render(
   <Provider store={ store }>
     <Router history={ browserHistory } >
       <Route path='/' component={ App }>
-        <IndexRoute component={ Home } />
-        <Route path='profile-feed' component={ RequireAuth(ProfileFeed) } />
-        <Route path='profile/:id' component={ Profile } />
-        <Route path='login' component={ Login } />
-        <Route path='signup' component={ Signup } />
-        <Route path='signout' component={ Signout } />
-        <Route path='about' component={ About } />
-        <Route path='contact' component={ Contact } />
+        <IndexRoute component={ HomePage } />
+        <Route path='profile-feed' component={ RequireAuth(ProfileFeedPage) } />
+        <Route path='profile/:id' component={ ProfilePage } />
+        <Route path='login' component={ LoginPage } />
+        <Route path='signup' component={ SignupPage } />
+        <Route path='signout' component={ SignoutPage } />
+        <Route path='about' component={ AboutPage } />
+        <Route path='contact' component={ ContactPage } />
         <Route path='groups' component={ Groups } />
         <Route path='group/:id' component={ Group } />
         <Route path='create-group' component={ CreateGroup } />
