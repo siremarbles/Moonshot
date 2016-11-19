@@ -1,7 +1,8 @@
 import {
   CREATE_GROUP,
   FETCH_GROUP_DATA,
-  FETCH_ALL_GROUPS
+  FETCH_ALL_GROUPS,
+  ADD_USER_TO_GROUP
 } from '../actions/types';
 
 export default function(state = {}, action) {
@@ -12,6 +13,8 @@ export default function(state = {}, action) {
       return { ...state, group: action.payload };
     case FETCH_ALL_GROUPS:
       return { ...state, groups: action.payload };
+    case ADD_USER_TO_GROUP:
+      return { ...state, group: action.payload };
   }
   return state;
 }

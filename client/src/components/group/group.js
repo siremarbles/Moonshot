@@ -8,32 +8,26 @@ class Group extends Component {
     this.props.fetchGroupData(this.props.params.id);
   }
 
-  joinGroup() {
-    this.props.joinGroup();
-  }
-
-  renderMembers() {
+  render() {
     if (!this.props.group) {
-      return null;
+      return(
+        <div>Loading...</div>
+      );
     } else {
       console.log(this.props.group);
       return (
-        <ul>
-          { this.props.group.members.map((member, i) => (
-            <li className='groupListItem' key={i}>{ member.name }</li>
-          ))}
-        </ul>
+        <div className='container'>
+          <h3>{ this.props.group.name} Group Page</h3>
+          <ul>
+            <h4>Members:</h4>
+            { this.props.group.members.map((member, i) => (
+              <li className='groupListItem' key={i}>{ member.name }</li>
+            ))}
+          </ul>
+          <button className='btn btn-primary' onClick={ () => this.props.addUserToGroup(this.props.group._id) } >Join Group</button>
+        </div>
       );
     }
-  }
-
-  render() {
-    return (
-      <div className='container'>
-        <h3>This an individual Group Page</h3>
-        { this.renderMembers() }
-      </div>
-    );
   }
 }
 

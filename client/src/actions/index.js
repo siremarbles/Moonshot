@@ -41,9 +41,9 @@ export function loginUser({ email, password }) {
   return function(dispatch) {
     axios.post(`${ROOT_URL}/login`, { email, password })
       .then(response => {
-        dispatch({ type: AUTH_USER });
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('userId', response.data.userId);
+        dispatch({ type: AUTH_USER });
         browserHistory.push('/profile-feed');
       })
       .catch(() => {
@@ -85,9 +85,7 @@ export function userV1Details({ firstName, lastName, dob, userType }) {
 
 export function userCCDetails({ ccName, ccN, ccE, ccV }) {
   const id = localStorage.getItem('userId');
-  const config = {
-    headers: { authorization: localStorage.getItem('token') }
-  };
+  const config = { headers: { authorization: localStorage.getItem('token') } };
   return function(dispatch) {
     axios.post(`${ROOT_URL}/user/ccinfo/${id}`, { ccName, ccN, ccE, ccV }, config)
       .then(response => {
@@ -162,7 +160,8 @@ export function createGroup({ groupName }) {
         dispatch({
           type: CREATE_GROUP,
           payload: response.data
-        })
+        });
+        browserHistory.push('/group/' + response.data.group.name);
       })
       .catch(error => { dispatch(authError(error.response.data.error)); });
   }
@@ -190,13 +189,25 @@ export function fetchAllGroups() {
         dispatch({
           type: FETCH_ALL_GROUPS,
           payload: response.data
-        })
+        });
       })
+      .catch(() => { dispatch(authError('Could no Fetch All Groups')); });
   }
 }
 
-export function joinGroup() {
-  console.log('hey we need to set up joinGroup()');
+export function addUserToGroup(groupId) {
+  const config = { headers: { authorization: localStorage.getItem('token') } };
+  const id = localStorage.getItem('userId');
+  return function(dispatch) {
+    axios.post(`${ROOT_URL}/group-add-user`, { groupId, userId: id }, config)
+      .then(response => {
+        dispatch({
+          type: ADD_USER_TO_GROUP,
+          payload: response.data
+        });
+      })
+      .catch(() => { dispatch(authError('Could not add User to the Group')); });
+  }
 }
 
 /*

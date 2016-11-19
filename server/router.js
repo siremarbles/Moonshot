@@ -27,6 +27,8 @@ module.exports = function(app) {
   app.post('/user/ccinfo/:id', requireAuth, userController.updateCreditCard);
   app.post('/create-group', requireAuth, groupController.createGroup);
 
+  app.post('/group-add-user', requireAuth, groupController.addUserToGroup);
+
 //PUT
   app.put('/update-user-privacy', requireAuth, userController.changeProfilePrivacy);
 

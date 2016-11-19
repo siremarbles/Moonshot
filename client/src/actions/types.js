@@ -14,6 +14,7 @@ export const FETCH_ALL_USERS = 'fetch_all_users';
 export const CREATE_GROUP = 'create_group';
 export const FETCH_GROUP_DATA = 'fetch_group_data';
 export const FETCH_ALL_GROUPS = 'fetch_all_groups';
+export const ADD_USER_TO_GROUP = 'add_user_to_group';
 
 //PROFILE
 export const FETCH_PROFILE_DATA = 'fetch_profile_data'

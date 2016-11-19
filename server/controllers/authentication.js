@@ -8,6 +8,7 @@ function tokenForUser(user) {
 }
 
 exports.login = function(req, res, next) {
+  console.log('the login exports');
   res.send({
     token: tokenForUser(req.user),
     userId: req.user._id

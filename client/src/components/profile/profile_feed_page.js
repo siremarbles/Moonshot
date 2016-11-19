@@ -70,7 +70,7 @@ onChange(state) {
           <h3>My Groups</h3>
           <ul>
             { this.props.user.groups.map((group, i) => (
-              <li className='groupListItem' groupListItemkey={i} type='button' onClick={ this.groupClicked.bind(this, group.groupName) }>{ group.groupName }</li>
+              <li className='groupListItem' key={i} type='button' onClick={ this.groupClicked.bind(this, group.groupName) }>{ group.groupName }</li>
             ))}
           </ul>
         </div>

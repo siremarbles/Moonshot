@@ -25,6 +25,7 @@ class Login extends Component {
       <div className='container'>
         <h3>Login</h3>
         <form onSubmit={ handleSubmit(this.handleFormSubmit.bind(this)) }>
+        {/* <form onSubmit={ () => this.props.loginUser({ email, password }) }> */}
           <fieldset className='form-group'>
             <label>Email: </label>
             <input { ...email } className='form-control' />
