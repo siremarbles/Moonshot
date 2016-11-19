@@ -14,7 +14,7 @@ export default function(state = {}, action) {
     case FETCH_ALL_GROUPS:
       return { ...state, groups: action.payload };
     case ADD_USER_TO_GROUP:
-      return { ...state, group: action.payload };
+      return { ...state, user: action.payload.user, group: action.payload.group };
   }
   return state;
 }

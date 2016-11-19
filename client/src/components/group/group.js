@@ -14,7 +14,6 @@ class Group extends Component {
         <div>Loading...</div>
       );
     } else {
-      console.log(this.props.group);
       return (
         <div className='container'>
           <h3>{ this.props.group.name} Group Page</h3>
@@ -34,7 +33,8 @@ class Group extends Component {
 function mapStateToProps(state) {
   return {
     errorMessage: state.auth.error,
-    group: state.group.group
+    group: state.group.group,
+    user: state.user.user
   }
 }
 

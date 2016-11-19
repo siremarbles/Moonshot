@@ -198,9 +198,10 @@ export function fetchAllGroups() {
 
 export function addUserToGroup(groupId) {
   const config = { headers: { authorization: localStorage.getItem('token') } };
-  const id = localStorage.getItem('userId');
+  // const id = localStorage.getItem('userId');
   return function(dispatch) {
-    axios.post(`${ROOT_URL}/group-add-user`, { groupId, userId: id }, config)
+    // axios.post(`${ROOT_URL}/group-add-user`, { groupId, userId: id }, config)
+    axios.post(`${ROOT_URL}/group-add-user`, { groupId }, config)
       .then(response => {
         dispatch({
           type: ADD_USER_TO_GROUP,
