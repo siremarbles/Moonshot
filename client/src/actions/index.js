@@ -153,9 +153,10 @@ export function fetchProfileData(profileId) {
 */
 
 export function createGroup({ groupName }) {
+  const id = localStorage.getItem('userId');
   const config = { headers: { authorization: localStorage.getItem('token') } };
   return function(dispatch) {
-    axios.post(`${ROOT_URL}/create-group`, { groupName }, config)
+    axios.post(`${ROOT_URL}/create-group`, { groupName, id }, config)
       .then(response => {
         dispatch({
           type: CREATE_GROUP,

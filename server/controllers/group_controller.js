@@ -10,20 +10,17 @@ exports.createGroup = function(req, res, next) {
     }
     const group = new Group({
       name: req.body.groupName,
-      members: [{ name: req.user.firstName, id: req.params.id }]
+      members: [{ name: req.user.firstName, id: req.user.id }]
     });
     group.save(function(err) {
       if (err) { return next(err, group); }
-
-      User.findOne({ id: req.params.id }, function(err, user) {
-        if (err) { return next(err); }
+      User.findByIdAndUpdate(req.user.id,
+        { groups: [{ groupName: group.name, groupId: group.id }] },
+         { new: true }, function(err, user) {
+        if (err) throw err;
         if (user) {
-          user.groups.push({ groupName: group.name, groupId: group.id });
-          user.save(function(err) {
-            if (err) return next(err);
-            const returnData = { group: group, user: user };
-            return res.send(returnData);
-          })
+          const returnData = { group: group, user: user };
+          return res.send(returnData);
         }
       })
     })

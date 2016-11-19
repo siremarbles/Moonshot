@@ -25,6 +25,7 @@ module.exports = function(app) {
   app.post('/signup', Authentication.signup);
   app.post('/profile/updateV1/:id', requireAuth, userController.updateV1Details);
   app.post('/user/ccinfo/:id', requireAuth, userController.updateCreditCard);
+
   app.post('/create-group', requireAuth, groupController.createGroup);
 
   app.post('/group-add-user', requireAuth, groupController.addUserToGroup);
