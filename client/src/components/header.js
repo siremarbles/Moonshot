@@ -61,8 +61,8 @@ class Header extends Component {
     const active = { borderBottomColor: '#3f51b5' };
 
     return (
-      <nav className='navbar-default navbar-static-top'>
-        <div className='container-fluid'>
+      <nav className='navbar navbar-default navbar-static-top'>
+        <div className='container'>
           <div className='navbar-header'>
             <button type="button" data-toggle="collapse" data-target="#navbar" className="navbar-toggle collapsed">
               <span className="sr-only">Toggle navigation</span>
@@ -71,7 +71,7 @@ class Header extends Component {
               <span className="icon-bar"></span>
             </button>
             <IndexLink to="/" className="navbar-brand">Moonshot</IndexLink>
-          </div>
+            </div>
           <div id="navbar" className="navbar-collapse collapse">
             {/* <ul className="nav navbar-nav">
               <li><IndexLink to="/" activeStyle={ active }>Home</IndexLink></li>
