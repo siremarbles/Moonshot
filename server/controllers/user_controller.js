@@ -52,7 +52,7 @@ exports.fetchAllUsers = function(req, res, next) {
 }
 
 exports.getProfileData = function(req, res, next) {
-  console.log('req.body', req.headers.profileid);
+  // console.log('req.body', req.headers.profileid);
   User.findOne({ _id: req.headers.profileid }, {
     email: 1,
     firstName: 1,
@@ -60,7 +60,8 @@ exports.getProfileData = function(req, res, next) {
     groups: 1,
     dob: 1,
     friends: 1,
-    profilePublic: 1
+    profilePublic: 1,
+    userFollowRequest: 1
   }, function(err, user) {
     if (err) { return next(err); }
     if (user) {

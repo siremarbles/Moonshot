@@ -20,7 +20,7 @@ class ProfileFeed extends Component {
     this.onChange = this.onChange.bind(this);
   }
 
-onChange(state) {
+  onChange(state) {
     this.setState(state);
     this.forceUpdate();
   }
@@ -61,6 +61,36 @@ onChange(state) {
     }
   }
 
+    approve() {
+      console.log('approve');
+    }
+
+    deny() {
+      console.log('deny');
+    }
+
+  renderFollowRequest() {
+    if (!this.props.user) {
+      return null;
+    } else {
+      if (this.props.user.userFollowRequest.length === 0) {
+        return null;
+      } else {
+        return(
+          <div className='container'>
+            { this.props.user.userFollowRequest.map((request, i) => (
+              <div key={i}>
+                <h4>{ request.followerName } wants to follow you</h4>
+                <button className='btn btn-primary' onClick={ () => this.props.updateFollowUserRequest(true, request.requestId) }>Approve</button>
+                <button className='btn btn-alert' onClick={ () => this.props.updateFollowUserRequest(false, request.requestId) }>Deny</button>
+              </div>
+            )) }
+          </div>
+        );
+      }
+    }
+  }
+
   renderGroups() {
     if (!this.props.user) {
       return <div>load</div>;
@@ -83,6 +113,7 @@ onChange(state) {
   }
 
   render() {
+    console.log('props = ', this.props);
     return (
       <div className='container'>
         { this.renderName() }
@@ -90,6 +121,7 @@ onChange(state) {
         <UserVerifyTwo />
         <UserVerifyThree />
         <UserFeed />
+        { this.renderFollowRequest() }
         { this.renderGroups() }
         { this.renderButtons() }
       </div>

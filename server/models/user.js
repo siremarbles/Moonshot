@@ -18,7 +18,7 @@ const userSchema = new Schema({
   lastName: String,
   verification: Number,
   groups: [{ groupName: String, groupId: String }],
-  followingUsers: {},
+  followingUsers: [{ followingName: String, followingId: String }],
   followingGroups: {},
   parentApproval: Boolean,
   gender: String,
@@ -26,7 +26,7 @@ const userSchema = new Schema({
   dateJoined: Date,
   phoneNumber: String,
   public: Boolean,
-  friends: [{ friendName: String, friendId: String }],
+  userFollowRequest: [{ requestId: String, followerName: String, followerId: String }],
   profilePublic: { type: Boolean, default: true }
 });
 

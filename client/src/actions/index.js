@@ -12,7 +12,9 @@ import {
   FETCH_GROUP_DATA,
   FETCH_ALL_GROUPS,
   FETCH_ALL_USERS,
-  FETCH_PROFILE_DATA
+  FETCH_PROFILE_DATA,
+  REQUEST_FOLLOW_USER,
+  UPDATE_FOLLOW_USER_REQUEST
 } from './types'
 
 const ROOT_URL = 'http://localhost:3090';
@@ -131,18 +133,48 @@ export function fetchAllUsers() {
 */
 
 export function fetchProfileData(profileId) {
-  console.log('in fPD id = ', profileId);
   const config = { headers: { authorization: localStorage.getItem('token'), profileId: profileId } };
   return function(dispatch) {
     axios.get(`${ROOT_URL}/profile-data`, config)
       .then(response => {
-        console.log('response = ', response);
         dispatch({
           type: FETCH_PROFILE_DATA,
           payload: response.data
         })
       })
       .catch(() => { dispatch(authError('Could not fetch this users profile data')); });
+  }
+}
+
+export function requestFollowUser(followingId, followingName, followerName) {
+  const id = localStorage.getItem('userId');
+  const config = { headers: { authorization: localStorage.getItem('token') } };
+  const requestData = { followerId: id, followingId: followingId, followerName: followerName, followingName: followingName};
+  return function(dispatch) {
+    axios.post(`${ROOT_URL}/request-follow-user`, requestData, config)
+      .then(response => {
+        dispatch({
+          type: REQUEST_FOLLOW_USER,
+          payload: response.data
+        })
+      })
+      .catch(() => { dispatch(authError('Could not create a follow request to follow this user')); });
+  }
+}
+
+export function updateFollowUserRequest(approved, reqId) {
+  console.log('request approval = ', approved, 'reqId = ', reqId);
+  const config = { headers: { authorization: localStorage.getItem('token') } };
+  const updateData = { approval: approved, requestId: reqId };
+  return function(dispatch) {
+    axios.post(`${ROOT_URL}/update-request-follow-user`, updateData, config)
+      .then(response => {
+        dispatch({
+          type: UPDATE_FOLLOW_USER_REQUEST,
+          payload: response.data
+        })
+      })
+      .catch(() => { dispatch(authError('Could not update the follow request')); });
   }
 }
 
@@ -198,9 +230,7 @@ export function fetchAllGroups() {
 
 export function addUserToGroup(groupId) {
   const config = { headers: { authorization: localStorage.getItem('token') } };
-  // const id = localStorage.getItem('userId');
   return function(dispatch) {
-    // axios.post(`${ROOT_URL}/group-add-user`, { groupId, userId: id }, config)
     axios.post(`${ROOT_URL}/group-add-user`, { groupId }, config)
       .then(response => {
         dispatch({
