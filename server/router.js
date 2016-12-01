@@ -9,6 +9,8 @@ const requireSignin = passport.authenticate('local', { session: false });
 var userController = require('./controllers/user_controller');
 var groupController = require('./controllers/group_controller');
 
+var followUserRequestController = require('./controllers/follow_user_request_controller');
+
 module.exports = function(app) {
 //GET
   app.get('/', requireAuth, function(req, res) {
@@ -27,8 +29,10 @@ module.exports = function(app) {
   app.post('/user/ccinfo/:id', requireAuth, userController.updateCreditCard);
 
   app.post('/create-group', requireAuth, groupController.createGroup);
-
   app.post('/group-add-user', requireAuth, groupController.addUserToGroup);
+
+  app.post('/request-follow-user', requireAuth, followUserRequestController.createFollowRequest);
+  app.post('/update-request-follow-user', requireAuth, followUserRequestController.updateRequest);
 
 //PUT
   app.put('/update-user-privacy', requireAuth, userController.changeProfilePrivacy);

@@ -15,7 +15,6 @@ exports.createGroup = function(req, res, next) {
     group.save(function(err) {
       if (err) { return next(err, group); }
       var groupData = { groupName: group.name, groupId: group.id };
-      console.log('groupData = ', groupData);
       User.findByIdAndUpdate(req.user.id,
          { $push: { groups: groupData } },
          { new: true }, function(err, user) {
@@ -31,7 +30,6 @@ exports.createGroup = function(req, res, next) {
 
 exports.addUserToGroup = function(req, res, next) {
   const userData = { name: req.user.firstName, userId: req.user._id };
-  console.log('userData = ', userData);
   Group.findByIdAndUpdate(req.body.groupId,
     { $push: { members: userData } },
     { new: true }, function(err, group) {
