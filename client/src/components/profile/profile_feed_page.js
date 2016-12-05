@@ -79,10 +79,11 @@ class ProfileFeed extends Component {
         return(
           <div className='container'>
             { this.props.user.userFollowRequest.map((request, i) => (
+
               <div key={i}>
                 <h4>{ request.followerName } wants to follow you</h4>
-                <button className='btn btn-primary' onClick={ () => this.props.updateFollowUserRequest(true, request.requestId) }>Approve</button>
-                <button className='btn btn-alert' onClick={ () => this.props.updateFollowUserRequest(false, request.requestId) }>Deny</button>
+                <button className='btn btn-primary' onClick={ () => this.props.updateFollowUserRequest(true, request.requestId, request._id) }>Approve</button>
+                <button className='btn btn-alert' onClick={ () => this.props.updateFollowUserRequest(false, request.requestId, request._id) }>Deny</button>
               </div>
             )) }
           </div>
@@ -112,20 +113,35 @@ class ProfileFeed extends Component {
     browserHistory.push('/group/' + name);
   }
 
-  render() {
-    console.log('props = ', this.props);
-    return (
-      <div className='container'>
-        { this.renderName() }
-        <UserVerifyOne />
-        <UserVerifyTwo />
-        <UserVerifyThree />
-        <UserFeed />
-        { this.renderFollowRequest() }
-        { this.renderGroups() }
-        { this.renderButtons() }
+  renderAccountDetails() {
+    return(
+      <div>
+        <a>Groups in: { this.props.user.groups.length } </a><br />
+        <a>Users I Follow: { this.props.user.followingUsers.length } </a><br />
+        <a>Users who Follow Me: { this.props.user.usersThatFollow.length } </a><br />
       </div>
     );
+  }
+
+  render() {
+    console.log('props = ', this.props);
+    if (!this.props.user) {
+      return <div>Loading...</div>;
+    } else {
+      return (
+        <div className='container'>
+          { this.renderName() }
+          { this.renderAccountDetails() }
+          <UserVerifyOne />
+          <UserVerifyTwo />
+          <UserVerifyThree />
+          <UserFeed />
+          { this.renderFollowRequest() }
+          { this.renderGroups() }
+          { this.renderButtons() }
+        </div>
+      );
+    }
   }
 }
 

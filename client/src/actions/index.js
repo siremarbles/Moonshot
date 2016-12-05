@@ -162,10 +162,10 @@ export function requestFollowUser(followingId, followingName, followerName) {
   }
 }
 
-export function updateFollowUserRequest(approved, reqId) {
+export function updateFollowUserRequest(approved, reqId, pendingId) {
   console.log('request approval = ', approved, 'reqId = ', reqId);
   const config = { headers: { authorization: localStorage.getItem('token') } };
-  const updateData = { approval: approved, requestId: reqId };
+  const updateData = { approval: approved, requestId: reqId, pendingId: pendingId };
   return function(dispatch) {
     axios.post(`${ROOT_URL}/update-request-follow-user`, updateData, config)
       .then(response => {

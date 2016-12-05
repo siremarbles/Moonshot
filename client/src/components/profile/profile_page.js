@@ -19,6 +19,13 @@ class UserProfile extends Component {
       var hasRequest = false;
       const followingName = this.props.viewUser.firstName + ' ' + this.props.viewUser.lastName;
       const followerName = this.props.user.firstName + ' ' + this.props.user.lastName;
+      const followers = this.props.viewUser.usersThatFollow;
+
+      for (var i = 0; i < followers.length; i++) {
+        if (followers[i].followerId == loggedInId) {
+          return(<div>You are following this user</div>);
+        }
+      }
 
       this.props.viewUser.userFollowRequest.map((user, i) => {
           if (user.followerId = loggedInId) { hasRequest = true; }
@@ -51,6 +58,7 @@ class UserProfile extends Component {
   }
 
   render() {
+    console.log('this.props = ', this.props);
     return(
       <div>
         { this.renderName() }
@@ -62,7 +70,7 @@ class UserProfile extends Component {
 function mapStateToProps(state) {
   return {
     errorMessage: state.auth.error,
-    viewUser: state.profile.profileUser,
+    viewUser: state.user.profileUser,
     user: state.user.user
   }
 }
