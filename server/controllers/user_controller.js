@@ -52,6 +52,7 @@ exports.fetchAllUsers = function(req, res, next) {
 }
 
 exports.getProfileData = function(req, res, next) {
+
   User.findOne({ _id: req.headers.profileid }, {
     email: 1,
     firstName: 1,
@@ -62,12 +63,17 @@ exports.getProfileData = function(req, res, next) {
     profilePublic: 1,
     userFollowRequest: 1,
     usersThatFollow: 1
-  }, function(err, user) {
+  }, function(err, viewUser) {
     if (err) { return next(err); }
-    if (user) {
-      res.send(user);
+    if (viewUser) {
+      User.findOne({_id: req.user.id}, function(err, user) {
+        if (err) { return next(err); }
+        const returnData = { user: user, viewUser: viewUser };
+        res.send(returnData);
+      })
     }
   })
+
 }
 
 exports.changeProfilePrivacy = function(req, res, next) {

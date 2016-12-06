@@ -28,7 +28,8 @@ const userSchema = new Schema({
   phoneNumber: String,
   public: Boolean,
   userFollowRequest: [{ requestId: String, followerName: String, followerId: String }],
-  profilePublic: { type: Boolean, default: true }
+  profilePublic: { type: Boolean, default: true },
+  pendingGroupInvite: [{ inviteId: String, groupName: String, groupId: String, invitedByName: String, invitedById: String }]
 });
 
 userSchema.pre('save', function(next) {

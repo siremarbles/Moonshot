@@ -65,7 +65,4 @@ exports.getGroups = function(req, res, next) {
       res.send(groups);
     }
   })
-
-
-  // return res.send(Group);
 }
