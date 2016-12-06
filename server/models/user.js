@@ -20,6 +20,7 @@ const userSchema = new Schema({
   groups: [{ groupName: String, groupId: String }],
   followingUsers: [{ followingName: String, followingId: String }],
   followingGroups: {},
+  usersThatFollow: [{ followerName: String, followerId: String }],
   parentApproval: Boolean,
   gender: String,
   dob: String,
