@@ -11,6 +11,7 @@ var groupController = require('./controllers/group_controller');
 
 var followUserRequestController = require('./controllers/follow_user_request_controller');
 
+var dwolla_controller = require('./controllers/dwolla_controller_2');
 module.exports = function(app) {
 //GET
   app.get('/', requireAuth, function(req, res) {
@@ -33,6 +34,11 @@ module.exports = function(app) {
 
   app.post('/request-follow-user', requireAuth, followUserRequestController.createFollowRequest);
   app.post('/update-request-follow-user', requireAuth, followUserRequestController.updateRequest);
+
+  //dwolla  exports.getDwollaRoot
+  app.get('/dwollauser', requireAuth, dwolla_controller.getDwollaRoot);
+  app.post('/dwollauser', requireAuth, dwolla_controller.createDwollaUser);
+
 
 //PUT
   app.put('/update-user-privacy', requireAuth, userController.changeProfilePrivacy);

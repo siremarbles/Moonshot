@@ -70,7 +70,7 @@ exports.createDwollaUser = function(req, res, next) {
 var options = { method: 'POST',
   url: 'https://api-uat.dwolla.com/customers',
   headers:
-   { 'postman-token': '2b458de8-b072-a131-af48-7cb63950e3e6',
+   { //'postman-token': '2b458de8-b072-a131-af48-7cb63950e3e6',
      'cache-control': 'no-cache',
      authorization: 'Bearer MN7jVOgxXw1fiVSpN9nlagbMAcL1gXFimIfkN8hs9oS6Qh4iUK',
      'content-type': 'application/json',
@@ -86,7 +86,7 @@ var customerbody = {
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
 
-  console.log(body);
+  console.log(response);
 });
 }
 
@@ -129,7 +129,7 @@ request(options, function (error, response, body) {
 
 //pull request for funds. In this case we would be depositing funds to user
 //charge customer
-expots.pullDwolla = function(req, res, next) {
+exports.pullDwolla = function(req, res, next) {
 var options = { method: 'POST',
   url: 'https://api-uat.dwolla.com/transfers',
   headers:
