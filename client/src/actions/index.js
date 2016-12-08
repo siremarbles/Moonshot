@@ -14,7 +14,9 @@ import {
   FETCH_ALL_USERS,
   FETCH_PROFILE_DATA,
   REQUEST_FOLLOW_USER,
-  UPDATE_FOLLOW_USER_REQUEST
+  UPDATE_FOLLOW_USER_REQUEST,
+  ADD_USER_TO_GROUP,
+  INVITE_TO_GROUP
 } from './types'
 
 const ROOT_URL = 'http://localhost:3090';
@@ -247,6 +249,21 @@ export function addUserToGroup(groupId) {
           OTHER
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
+
+export function sendGroupInvite(invitingId, invitingName, invitedId, invitedName, groupId, groupName) {
+  const config = { headers: { authorization: localStorage.getItem('token') } };
+  const inviteData = { invitingId, invitingName, invitedName, invitedId, groupId, groupName };
+  return function(dispatch) {
+    axios.post(`${ROOT_URL}/invite-to-group`, inviteData, config)
+      .then(response => {
+        dispatch({
+          type: INVITE_TO_GROUP,
+          payload: response.data
+        });
+      })
+      .catch(() => { dispatch(authError('Could not send an invite to this user')); });
+  }
+}
 
 export function fetchMessage() {
   const config = { headers: { authorization: localStorage.getItem('token') } };

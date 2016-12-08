@@ -8,8 +8,8 @@ const requireSignin = passport.authenticate('local', { session: false });
 
 var userController = require('./controllers/user_controller');
 var groupController = require('./controllers/group_controller');
-
 var followUserRequestController = require('./controllers/follow_user_request_controller');
+var inviteToGroupController = require('./controllers/invite_to_group_controller');
 
 var dwolla_controller = require('./controllers/dwolla_controller_2');
 module.exports = function(app) {
@@ -31,6 +31,7 @@ module.exports = function(app) {
 
   app.post('/create-group', requireAuth, groupController.createGroup);
   app.post('/group-add-user', requireAuth, groupController.addUserToGroup);
+  app.post('/invite-to-group', requireAuth, inviteToGroupController.sendInvite);
 
   app.post('/request-follow-user', requireAuth, followUserRequestController.createFollowRequest);
   app.post('/update-request-follow-user', requireAuth, followUserRequestController.updateRequest);

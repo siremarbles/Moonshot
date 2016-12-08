@@ -5,7 +5,8 @@ import {
   FETCH_ALL_USERS,
   FETCH_PROFILE_DATA,
   REQUEST_FOLLOW_USER,
-  UPDATE_FOLLOW_USER_REQUEST
+  UPDATE_FOLLOW_USER_REQUEST,
+  INVITE_TO_GROUP
 } from '../actions/types';
 
 export default function(state = {}, action) {
@@ -19,8 +20,11 @@ export default function(state = {}, action) {
     case FETCH_ALL_USERS:
       return { ...state, allUsers: action.payload };
 
-    case FETCH_PROFILE_DATA:
+    case INVITE_TO_GROUP:
       return { ...state, profileUser: action.payload };
+
+    case FETCH_PROFILE_DATA:
+      return { ...state, user: action.payload.user, profileUser: action.payload.viewUser };
     case REQUEST_FOLLOW_USER:
       return { ...state, user: action.payload.user, profileUser: action.payload.viewUser };
     case UPDATE_FOLLOW_USER_REQUEST:
