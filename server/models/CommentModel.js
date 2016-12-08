@@ -16,6 +16,6 @@ const commentSchema = new Schema({
   date: Date
 });
 
-const GroupClass = mongoose.model('group', groupSchema);
+const CommentClass = mongoose.model('comment', commentSchema);
 
-module.exports = GroupClass;
+module.exports = CommentClass;
