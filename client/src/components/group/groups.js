@@ -55,27 +55,31 @@ class Groups extends Component {
   render() {
     return (
       <div className='container'>
+        <div className="row">
+
       <div classname ="panel">
-        <div classname='row'>
-        <div className="col-md-7 col-lg-7 col-sm-7 col-xs-7">
+
         <div className='panel-heading'>
           <h3 className='panel-title'>Groups Page</h3>
           </div>
             <div className='panel-body'>
 
-           <h2>Groups Page</h2>
+              <h2>Groups Page</h2>
 
-        { this.renderGroups() }
-        { this.renderUsers() }
-      </div>
-      </div>
+              { this.renderGroups() }
+              { this.renderUsers() }
+            </div>
+
       </div>
     </div>
-    <div className='panel'>
+    <div classname ="panel">
+
       <div className='panel-heading'>
-        <h3 className='panel-title'>test</h3>
-      </div>
-    </div>
+        <h3 className='panel-title'>Groups Page</h3>
+        </div>
+        
+
+
     </div>
     );
   }

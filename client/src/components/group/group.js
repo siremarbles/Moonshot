@@ -16,6 +16,8 @@ class Group extends Component {
     } else {
       return (
         <div className='container'>
+          <div classname='row'>
+          <div classname ="panel">
           <h3>{ this.props.group.name} Group Page</h3>
           <ul>
             <h4>Members:</h4>
@@ -25,6 +27,8 @@ class Group extends Component {
           </ul>
           <button className='btn btn-primary' onClick={ () => this.props.addUserToGroup(this.props.group._id) } >Join Group</button>
         </div>
+       </div>
+      </div>
       );
     }
   }

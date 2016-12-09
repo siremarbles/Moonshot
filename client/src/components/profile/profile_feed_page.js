@@ -101,7 +101,7 @@ class ProfileFeed extends Component {
           <h3>My Groups</h3>
           <ul>
             { this.props.user.groups.map((group, i) => (
-              <li className='groupListItem' key={i} type='button' onClick={ this.groupClicked.bind(this, group.groupName) }>{ group.groupName }</li>
+              <a><li className='groupListItem' key={i} type='button' onClick={ this.groupClicked.bind(this, group.groupName) }>{ group.groupName }</li></a>
             ))}
           </ul>
         </div>
