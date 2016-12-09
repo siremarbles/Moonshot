@@ -24,6 +24,8 @@ class Groups extends Component {
     } else {
       return(
         <div className='container'>
+          <div className='panel'>
+            <div className='panel-body'>
           <h3>All Groups</h3>
           <ul>
             { this.props.groups.map((group, i) => (
@@ -31,6 +33,8 @@ class Groups extends Component {
             ))}
           </ul>
         </div>
+      </div>
+    </div>
       );
     }
   }
@@ -41,12 +45,16 @@ class Groups extends Component {
     } else {
       return (
         <div className='container'>
+          <div className='panel'>
+            <div className='panel-body'>
           <h3>All Users</h3>
           <ul>
             { this.props.users.map((user, i) => (
               <li className='groupListItem' key={i} type='button' onClick={ this.userClicked.bind(this, user._id) }>{ user.firstName }</li>
             ))}
           </ul>
+        </div>
+        </div>
         </div>
       );
     }
@@ -62,9 +70,7 @@ class Groups extends Component {
         <div className='panel-heading'>
           <h3 className='panel-title'>Groups Page</h3>
           </div>
-            <div className='panel-body'>
-
-              <h2>Groups Page</h2>
+           <div className='panel-body'>
 
               { this.renderGroups() }
               { this.renderUsers() }
@@ -72,14 +78,6 @@ class Groups extends Component {
 
         </div>
        </div>
-    <div classname ="panel">
-       <div className="col-md-7 col-lg-7 col-sm-7 col-xs-7">
-      <div className='panel-heading'>
-        <h3 className='panel-title'>Groups Page</h3>
-
-        </div>
-      </div>
-  </div>
     </div>
     );
   }

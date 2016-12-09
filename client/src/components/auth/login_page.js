@@ -24,9 +24,7 @@ class Login extends Component {
     return (
       <div className='container'>
           <div className='panel'>
-            <div className='container'>
             <div className="row">
-              <div className='col-sm-12'>
               <div className='panel-heading'>
                 <div className='panel-title'>
                   <h3>Login</h3>
@@ -53,8 +51,6 @@ class Login extends Component {
           <Link to='/signup' className='btn btn-primary'>Sign up!</Link>
 
         </div>
-        </div>
-      </div>
     </div>
     </div>
 </div>

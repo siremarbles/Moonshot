@@ -17,8 +17,10 @@ class Group extends Component {
       return (
         <div className='container'>
           <div classname='row'>
-          <div classname ="panel">
-          <h3>{ this.props.group.name} Group Page</h3>
+          <div classname="panel">
+          <div className='panel-heading'><div className='panel-title'><h3>{ this.props.group.name} Group Page</h3></div></div>
+
+          <div classname ="panel-body">
           <ul>
             <h4>Members:</h4>
             { this.props.group.members.map((member, i) => (
@@ -26,6 +28,7 @@ class Group extends Component {
             ))}
           </ul>
           <button className='btn btn-primary' onClick={ () => this.props.addUserToGroup(this.props.group._id) } >Join Group</button>
+          </div>
         </div>
        </div>
       </div>

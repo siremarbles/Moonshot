@@ -130,15 +130,28 @@ class ProfileFeed extends Component {
     } else {
       return (
         <div className='container'>
+          <div className='panel'>
+            <div className='panel-body'>
           { this.renderName() }
           { this.renderAccountDetails() }
+
           <UserVerifyOne />
           <UserVerifyTwo />
           <UserVerifyThree />
+          </div>
+          </div>
+          <div className='panel'>
+            <div className='panel-body'>
           <UserFeed />
+          </div>
+        </div>
+        <div className='panel'>
+          <div className='panel-body'>
           { this.renderFollowRequest() }
           { this.renderGroups() }
           { this.renderButtons() }
+       </div>
+     </div>
         </div>
       );
     }
