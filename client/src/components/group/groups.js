@@ -77,9 +77,9 @@ class Groups extends Component {
       <div className='panel-heading'>
         <h3 className='panel-title'>Groups Page</h3>
         </div>
-        
 
 
+  </div>
     </div>
     );
   }
