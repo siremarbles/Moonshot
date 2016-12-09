@@ -23,26 +23,41 @@ class Login extends Component {
 
     return (
       <div className='container'>
-        <h3>Login</h3>
-        <form onSubmit={ handleSubmit(this.handleFormSubmit.bind(this)) }>
-          <fieldset className='form-group'>
-            <label>Email: </label>
-            <input { ...email } className='form-control' />
-          </fieldset>
-          <fieldset>
-            <label>Password: </label>
-            <input { ...password } type='password' className='form-control' />
-          </fieldset>
-          { this.renderAlert() }
-          <button type='submit' className='btn btn-primary'>Login!</button>
-        </form>
-        <br />
-        <br />
-        <div>
+          <div className='panel'>
+            <div className='container'>
+            <div className="row">
+              <div className='col-sm-12'>
+              <div className='panel-heading'>
+                <div className='panel-title'>
+                  <h3>Login</h3>
+                </div>
+              </div>
+              <div className='panel-body'>
+
+                <form onSubmit={ handleSubmit(this.handleFormSubmit.bind(this)) }>
+
+                    <fieldset className='form-group'>
+                        <label>Email: </label>
+                        <input { ...email } className='form-control' />
+                    </fieldset>
+                    <fieldset>
+                      <label>Password: </label>
+                        <input { ...password } type='password' className='form-control' />
+                    </fieldset>
+                      <br />
+                      { this.renderAlert() }
+                        <button type='submit' className='btn btn-primary'>Login!</button>
+                      </form>
+
           <h4>Or Sign up</h4>
           <Link to='/signup' className='btn btn-primary'>Sign up!</Link>
+
+        </div>
         </div>
       </div>
+    </div>
+    </div>
+</div>
     );
   }
 }

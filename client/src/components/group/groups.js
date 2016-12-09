@@ -70,15 +70,15 @@ class Groups extends Component {
               { this.renderUsers() }
             </div>
 
-      </div>
-    </div>
+        </div>
+       </div>
     <div classname ="panel">
-
+       <div className="col-md-7 col-lg-7 col-sm-7 col-xs-7">
       <div className='panel-heading'>
         <h3 className='panel-title'>Groups Page</h3>
+
         </div>
-
-
+      </div>
   </div>
     </div>
     );
