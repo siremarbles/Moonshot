@@ -45,10 +45,10 @@ class Login extends Component {
                       <br />
                       { this.renderAlert() }
                         <button type='submit' className='btn btn-primary'>Login!</button>
+                        <span /> <span /> <Link to='/signup' className='btn btn-primary'>Sign up!</Link>
                       </form>
 
-          <h4>Or Sign up</h4>
-          <Link to='/signup' className='btn btn-primary'>Sign up!</Link>
+
 
         </div>
     </div>
