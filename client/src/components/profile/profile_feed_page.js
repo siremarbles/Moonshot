@@ -130,6 +130,8 @@ class ProfileFeed extends Component {
     } else {
       return (
         <div className='container'>
+          <div className='row'>
+            <div className='col-sm-3'>
           <div className='panel'>
             <div className='panel-body'>
           { this.renderName() }
@@ -139,17 +141,25 @@ class ProfileFeed extends Component {
           <UserVerifyTwo />
           <UserVerifyThree />
           </div>
+        </div>
           </div>
+          <div className='col-sm-9'>
           <div className='panel'>
             <div className='panel-body'>
           <UserFeed />
           </div>
         </div>
+            </div>
+        </div>
+        <div className='row'>
+          <div className='col-sm-3'>
         <div className='panel'>
           <div className='panel-body'>
           { this.renderFollowRequest() }
           { this.renderGroups() }
           { this.renderButtons() }
+          </div>
+          </div>
        </div>
      </div>
         </div>

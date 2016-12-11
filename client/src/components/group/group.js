@@ -28,8 +28,8 @@ class Group extends Component {
               <li className='groupListItem' key={i}>{ member.name }</li>
             ))}
           </ul>
-          <button className='btn btn-primary' onClick={ () => this.props.addUserToGroup(this.props.group._id) } >Join Group</button>
           </div>
+          <button className='btn btn-primary' onClick={ () => this.props.addUserToGroup(this.props.group._id) } >Join Group</button>
         </div>
         </div>
        </div>
