@@ -39,3 +39,14 @@ exports.sendInvite = function(req, res, next) {
     });
   });
 }
+
+exports.getInvites = function(req,res,next){
+  InviteSchema.findOne({ groupName: req.params.id }, function(err, invite) {
+    if (err) return next(err);
+    if (invite) {
+      res.send(invite);
+    } else {
+      res.redirect('/');
+    }
+});
+};
