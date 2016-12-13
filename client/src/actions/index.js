@@ -278,3 +278,24 @@ export function fetchMessage() {
       .catch(() => { dispatch(authError('Could not Fetch Message')); });
   }
 }
+
+
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     ACTIVITY FEED
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+export function fetchActivityData(groupName) {
+  const config = { headers: { authorization: localStorage.getItem('token') } };
+  return function(dispatch) {
+    axios.get(`${ROOT_URL}/invites/${groupName}`, config)
+      .then(response => {
+        dispatch({
+          type: FETCH_ACTIVITY_DATA,
+          payload: response.data
+        })
+        console.log("Yea gtting activity data")
+      })
+      .catch(() => { dispatch(authError('Could not Fetch Activity Data')); });
+  }
+}

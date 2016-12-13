@@ -22,6 +22,7 @@ module.exports = function(app) {
   app.get('/profile-data', requireAuth, userController.getProfileData);
   app.get('/group/:id', requireAuth, groupController.getGroupData);
   app.get('/groups', requireAuth, groupController.getGroups);
+  app.get('/invites', requireAuth, inviteToGroupController.getInvites);
 
 //POST
   app.post('/login', requireSignin, Authentication.login);

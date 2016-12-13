@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 
 class UserFeed extends Component {
+  //this.props.activity
   render() {
     return (
+      <div>
       <div className='container'>
         <h3>Activity Feed</h3>
         <p>This is where the activity feed will go</p>
         <p>Hey guess what so and so just got $200 from the Cool Group </p>
       </div>
+
+      <div className='container'>
+       <ul>
+         <li>this.props.activity</li>
+       </ul>
+      </div>
+    </div>
     )
   }
 }
