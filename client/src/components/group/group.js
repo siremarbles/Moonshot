@@ -21,7 +21,7 @@ class Group extends Component {
           <div className='panel'>
           <div className='panel-heading'><div className='panel-title'><h3>{ this.props.group.name}</h3></div></div>
 
-          <div classname ='panel-body'>
+          <div className ='panel-body'>
           <ul>
             <h4>Members:</h4>
             { this.props.group.members.map((member, i) => (

@@ -65,18 +65,15 @@ class Groups extends Component {
       <div className='container'>
         <div className="row">
 
-      <div classname ="panel">
+
 
         <div className='panel-heading'>
           <h3 className='panel-title'>Groups Page</h3>
           </div>
-           <div className='panel-body'>
 
               { this.renderGroups() }
               { this.renderUsers() }
-            </div>
 
-        </div>
        </div>
     </div>
     );
