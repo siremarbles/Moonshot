@@ -22,6 +22,12 @@ class Signup extends Component {
 
     return (
       <div className="container">
+        <div className='panel'>
+        <div className='row'>
+          <div className='panel-heading'>
+          <div className='panel-title'> <h3>Sign Up</h3></div>
+          </div>
+          <div className='panel-body'>
         <form onSubmit={ handleSubmit(this.handleFormSubmit.bind(this)) }>
           <fieldset className='form-group'>
             <label>Email:</label>
@@ -42,6 +48,9 @@ class Signup extends Component {
           <button action='submit' className='btn btn-primary'>Create Account!</button>
         </form>
       </div>
+    </div>
+  </div>
+    </div>
     );
   }
 }

@@ -24,6 +24,8 @@ class Groups extends Component {
     } else {
       return(
         <div className='container'>
+          <div className='panel'>
+            <div className='panel-body'>
           <h3>All Groups</h3>
           <ul>
             { this.props.groups.map((group, i) => (
@@ -31,6 +33,8 @@ class Groups extends Component {
             ))}
           </ul>
         </div>
+      </div>
+    </div>
       );
     }
   }
@@ -41,6 +45,8 @@ class Groups extends Component {
     } else {
       return (
         <div className='container'>
+          <div className='panel'>
+            <div className='panel-body'>
           <h3>All Users</h3>
           <ul>
             { this.props.users.map((user, i) => (
@@ -48,20 +54,32 @@ class Groups extends Component {
             ))}
           </ul>
         </div>
+        </div>
+        </div>
       );
     }
   }
 
   render() {
     return (
-      <div>
-        <h2>Groups Page</h2>
-        { this.renderGroups() }
-        { this.renderUsers() }
-      </div>
+      <div className='container'>
+        <div className="row">
+
+
+
+        <div className='panel-heading'>
+          <h3 className='panel-title'>Groups Page</h3>
+          </div>
+
+              { this.renderGroups() }
+              { this.renderUsers() }
+
+       </div>
+    </div>
     );
   }
 }
+
 
 function mapStateToProps(state) {
   // console.log('state = ', state);

@@ -16,15 +16,24 @@ class Group extends Component {
     } else {
       return (
         <div className='container'>
-          <h3>{ this.props.group.name} Group Page</h3>
+          <div className='row'>
+            <div className='col-sm-10'>
+          <div className='panel'>
+          <div className='panel-heading'><div className='panel-title'><h3>{ this.props.group.name}</h3></div></div>
+
+          <div className ='panel-body'>
           <ul>
             <h4>Members:</h4>
             { this.props.group.members.map((member, i) => (
               <li className='groupListItem' key={i}>{ member.name }</li>
             ))}
           </ul>
+          </div>
           <button className='btn btn-primary' onClick={ () => this.props.addUserToGroup(this.props.group._id) } >Join Group</button>
         </div>
+        </div>
+       </div>
+      </div>
       );
     }
   }

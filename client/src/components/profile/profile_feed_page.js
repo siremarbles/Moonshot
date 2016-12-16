@@ -13,6 +13,7 @@ class ProfileFeed extends Component {
   componentWillMount() {
     this.props.fetchMessage();
     this.props.fetchUserFeedData();
+    this.props.fetchActivityData("5852fcab87775277c6f03df4");
   }
 
   constructor(props) {
@@ -101,7 +102,7 @@ class ProfileFeed extends Component {
           <h3>My Groups</h3>
           <ul>
             { this.props.user.groups.map((group, i) => (
-              <li className='groupListItem' key={i} type='button' onClick={ this.groupClicked.bind(this, group.groupName) }>{ group.groupName }</li>
+              <a><li className='groupListItem' key={i} type='button' onClick={ this.groupClicked.bind(this, group.groupName) }>{ group.groupName }</li></a>
             ))}
           </ul>
         </div>
@@ -123,6 +124,7 @@ class ProfileFeed extends Component {
     );
   }
 
+
   render() {
     console.log('props = ', this.props);
     if (!this.props.user) {
@@ -130,15 +132,38 @@ class ProfileFeed extends Component {
     } else {
       return (
         <div className='container'>
+          <div className='row'>
+            <div className='col-sm-3'>
+          <div className='panel'>
+            <div className='panel-body'>
           { this.renderName() }
           { this.renderAccountDetails() }
+
           <UserVerifyOne />
           <UserVerifyTwo />
           <UserVerifyThree />
+          </div>
+        </div>
+          </div>
+          <div className='col-sm-9'>
+          <div className='panel'>
+            <div className='panel-body'>
           <UserFeed />
+          </div>
+        </div>
+            </div>
+        </div>
+        <div className='row'>
+          <div className='col-sm-3'>
+        <div className='panel'>
+          <div className='panel-body'>
           { this.renderFollowRequest() }
           { this.renderGroups() }
           { this.renderButtons() }
+          </div>
+          </div>
+       </div>
+     </div>
         </div>
       );
     }

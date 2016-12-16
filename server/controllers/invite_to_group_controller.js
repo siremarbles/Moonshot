@@ -39,3 +39,16 @@ exports.sendInvite = function(req, res, next) {
     });
   });
 }
+
+exports.getInvites = function(req,res,next){
+  InviteSchema.find({ groupId: req.params.id }, function(err, invite) {
+    if (err) return next(err);
+    if (invite) {
+      res.send(invite);
+      console.log('it worked ahhha')
+    } else {
+      res.send('didnotwork');
+      //res.redirect('/');
+    }
+});
+};

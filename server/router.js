@@ -10,7 +10,9 @@ var userController = require('./controllers/user_controller');
 var groupController = require('./controllers/group_controller');
 var followUserRequestController = require('./controllers/follow_user_request_controller');
 var inviteToGroupController = require('./controllers/invite_to_group_controller');
+var activityController = require('./controllers/activity_controller');
 
+var dwolla_controller = require('./controllers/dwolla_controller_2');
 module.exports = function(app) {
 //GET
   app.get('/', requireAuth, function(req, res) {
@@ -21,6 +23,8 @@ module.exports = function(app) {
   app.get('/profile-data', requireAuth, userController.getProfileData);
   app.get('/group/:id', requireAuth, groupController.getGroupData);
   app.get('/groups', requireAuth, groupController.getGroups);
+  app.get('/invites/:id', requireAuth, inviteToGroupController.getInvites);
+  app.get('/createdgroup', requireAuth, activityController.getcreatedGroups);
 
 //POST
   app.post('/login', requireSignin, Authentication.login);
@@ -34,6 +38,12 @@ module.exports = function(app) {
 
   app.post('/request-follow-user', requireAuth, followUserRequestController.createFollowRequest);
   app.post('/update-request-follow-user', requireAuth, followUserRequestController.updateRequest);
+  app.post('/activity/', requireAuth, activityController.postActivity);
+
+  //dwolla  exports.getDwollaRoot
+  app.get('/dwollauser', requireAuth, dwolla_controller.getDwollaRoot);
+  app.post('/dwollauser', requireAuth, dwolla_controller.createDwollaUser);
+
 
 //PUT
   app.put('/update-user-privacy', requireAuth, userController.changeProfilePrivacy);

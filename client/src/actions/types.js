@@ -9,6 +9,7 @@ export const FETCH_USER_FEED_DATA = 'fetch_user_feed_data';
 export const USER_UPDATE_V1 = 'user_update_v1';
 export const USER_UPDATE_CC = 'user_update_cc';
 export const FETCH_ALL_USERS = 'fetch_all_users';
+export const FETCH_ACTIVITY_DATA = 'fetch_activity_data';
 
 export const INVITE_TO_GROUP = 'invite_to_group';
 
