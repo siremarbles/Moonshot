@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 
 class UserFeed extends Component {
+
+// //const groupname = '5852fcab87775277c6f03df4';
+//  componentWillMount() {
+//   this.props.fetchActivityData(groupname);
+//
+//
+// }
+
+
   //this.props.activity
   render() {
     return (

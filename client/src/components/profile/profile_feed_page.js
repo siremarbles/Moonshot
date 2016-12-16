@@ -13,6 +13,7 @@ class ProfileFeed extends Component {
   componentWillMount() {
     this.props.fetchMessage();
     this.props.fetchUserFeedData();
+    this.props.fetchActivityData("5852fcab87775277c6f03df4");
   }
 
   constructor(props) {
@@ -122,6 +123,7 @@ class ProfileFeed extends Component {
       </div>
     );
   }
+
 
   render() {
     console.log('props = ', this.props);

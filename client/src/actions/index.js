@@ -294,7 +294,7 @@ export function fetchActivityData(groupName) {
           type: FETCH_ACTIVITY_DATA,
           payload: response.data
         })
-        console.log("Yea gtting activity data")
+        console.log("Yea getting activity data")
       })
       .catch(() => { dispatch(authError('Could not Fetch Activity Data')); });
   }

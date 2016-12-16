@@ -41,12 +41,14 @@ exports.sendInvite = function(req, res, next) {
 }
 
 exports.getInvites = function(req,res,next){
-  InviteSchema.findOne({ groupName: req.params.id }, function(err, invite) {
+  InviteSchema.find({ groupId: req.params.id }, function(err, invite) {
     if (err) return next(err);
     if (invite) {
       res.send(invite);
+      console.log('it worked ahhha')
     } else {
-      res.redirect('/');
+      res.send('didnotwork');
+      //res.redirect('/');
     }
 });
 };

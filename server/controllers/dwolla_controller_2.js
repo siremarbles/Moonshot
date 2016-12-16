@@ -48,17 +48,48 @@ var requestBody = {
 	// });
 
 
+
+/*
+must get an acces token and then save that access token to access dwolla
+
+*/
+
+exports.getDwollaAccessToken = function(req, res, next){
+  var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://uat.dwolla.com/oauth/v2/token',
+  headers:
+   { 'content-type': 'application/x-www-form-urlencoded',
+     //'postman-token': 'f1ec54cd-75df-c573-8c67-6fe8c17d4449',
+     'cache-control': 'no-cache' },
+  form:
+   { client_id: 'flcIuRqKniAVIyMDHlteQNqgAFbxuSg1HsblqQJO0MsyqYCTxG',
+     client_secret: '3ekSYYOdAFyiYwTzaYzJ6lHnCjAuwbRmEQENBLShSw5Strzhjy',
+     code: '',
+     grant_type: 'client_credentials',
+     redirect_uri: 'localhost:8080' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+  res.send(response);
+  console.log(body);
+});
+
+}
+
 exports.getDwollaRoot = function(req, res, next) {
 var root = { method: 'GET',
   url: 'https://api-uat.dwolla.com/',
   headers:
    { //'postman-token': 'd670e1c2-7cbb-2117-eebf-225183f7e457',
      'cache-control': 'no-cache',
-     authorization: 'Bearer MN7jVOgxXw1fiVSpN9nlagbMAcL1gXFimIfkN8hs9oS6Qh4iUK',
+     authorization: 'Bearer cDMzTYGtl5bdQhbV0WFpfwRPJGrvg9hqsrAYq3bjaiB9mhhFrt',
      accept: 'application/vnd.dwolla.v1.hal+json' } };
 
 request(root, function (error, response) {
   if (error) throw new Error(error);
+  res.send(response);
 
   console.log(response);
 });
@@ -72,7 +103,7 @@ var options = { method: 'POST',
   headers:
    { //'postman-token': '2b458de8-b072-a131-af48-7cb63950e3e6',
      'cache-control': 'no-cache',
-     authorization: 'Bearer MN7jVOgxXw1fiVSpN9nlagbMAcL1gXFimIfkN8hs9oS6Qh4iUK',
+     authorization: 'Bearer cDMzTYGtl5bdQhbV0WFpfwRPJGrvg9hqsrAYq3bjaiB9mhhFrt',
      'content-type': 'application/json',
      accept: 'application/vnd.dwolla.v1.hal+json' } };
 
@@ -85,6 +116,7 @@ var customerbody = {
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
+  res.send(response);
 
   console.log(response);
 });
@@ -99,7 +131,7 @@ var options = { method: 'POST',
      'cache-control': 'no-cache',
      'idempotency-key': '4d7505ff-4d83-409b-88ef-486a7af9f588',
      'content-type': 'application/json',
-     authorization: 'Bearer MN7jVOgxXw1fiVSpN9nlagbMAcL1gXFimIfkN8hs9oS6Qh4iUK',
+     authorization: 'Bearer cDMzTYGtl5bdQhbV0WFpfwRPJGrvg9hqsrAYq3bjaiB9mhhFrt',
      accept: 'application/vnd.dwolla.v1.hal+json' } };
 
 	var body =  {
@@ -137,7 +169,7 @@ var options = { method: 'POST',
      'cache-control': 'no-cache',
      'idempotency-key': '4d7505ff-4d83-409b-88ef-486a7af9f588',
      'content-type': 'application/json',
-     authorization: 'Bearer MN7jVOgxXw1fiVSpN9nlagbMAcL1gXFimIfkN8hs9oS6Qh4iUK',
+     authorization: 'Bearer cDMzTYGtl5bdQhbV0WFpfwRPJGrvg9hqsrAYq3bjaiB9mhhFrt',
      accept: 'application/vnd.dwolla.v1.hal+json' } };
 
 	var body =  {

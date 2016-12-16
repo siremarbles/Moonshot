@@ -10,7 +10,9 @@ exports.createGroup = function(req, res, next) {
     }
     const group = new Group({
       name: req.body.groupName,
-      members: [{ name: req.user.firstName, id: req.user.id }]
+      members: [{ name: req.user.firstName, userId: req.user.id }],
+      createdBy: {firstName: req.user.firstName, lastName: req.user.lastName, userId: req.user.id}
+
     });
     group.save(function(err) {
       if (err) { return next(err, group); }

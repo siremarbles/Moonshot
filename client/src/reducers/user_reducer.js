@@ -31,7 +31,7 @@ export default function(state = {}, action) {
     case UPDATE_FOLLOW_USER_REQUEST:
       return { ...state, user: action.payload };
       case FETCH_ACTIVITY_DATA:
-        return { ...state, user: action.payload, profileUser: action.payload.viewUser };
+        return { ...state, user: action.payload };
   }
   return state;
 }
